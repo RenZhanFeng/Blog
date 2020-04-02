@@ -1,0 +1,26 @@
+#配置服务器信息
+server:
+  #配置服务器端口
+  port: 8081
+  servlet:
+    #配置服务器访问路径    context-path: /blog
+    
+#mysql数据库相关配置
+spring:  datasource:
+    #数据库链接地址    url: jdbc:mysql://localhost:3306/iblog?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
+    #数据库驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据库用户名
+    username: root
+    #数据密码
+    password: 123456
+    
+    
+#mybatis配置
+mybatis:  type-aliases-package: cr.clown.blog.entity
+  #配置映射文件
+  mapper-locations: classpath:mapper/*Dao.xml
+  #设置mybatis配置读取文件
+  #config-location: classpath:spring/mybatis-config.xml
+ 
+  

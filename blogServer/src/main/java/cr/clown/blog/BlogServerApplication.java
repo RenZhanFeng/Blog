@@ -1,9 +1,11 @@
-package cr.clown.blogserver;
+package cr.clown.blog;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan(basePackages = "cr.clown.blog.dao")
 public class BlogServerApplication {
 
 	public static void main(String[] args) {
