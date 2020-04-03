@@ -18,9 +18,33 @@ public interface UserDao {
 	List<User> queryAllUser();
 	
 	/**
+	 * 通过ID查询用户信息
+	 * @return 用户信息
+	 */
+	User queryUserById(Integer uid);
+	
+	/**
+	 * 通过用户名查询用户信息
+	 * @return 用户信息
+	 */
+	List<User> queryUserByName(String username);
+	
+	/**
 	 * 添加用户信息
-	 * @return 添加用户
+	 * @return 
 	 */
 	Integer insertUser(User user);
+	
+	/**
+	 * 修改用户信息
+	 * @return 
+	 */
+	Integer updateUser(User user);
+	
+	/**
+	 * 删除用户信息
+	 * @return 
+	 */
+	Integer delUserById(Integer uid);
 
 }

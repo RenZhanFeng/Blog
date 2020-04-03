@@ -16,6 +16,21 @@ spring:  datasource:
     password: 123456
     
     
+  #thymeleaf start   thymeleaf:
+    #视图解析器的前缀放在这个文件夹
+    #prefix: classpath:templates/
+    #后缀
+    #suffix: .html
+    #模式
+    #mode: LEGACYHTML5
+    #servlet:      #content-type: text/html; charset=utf-8
+    #编码格式
+    encoding: utf-8
+    #不用缓存    cache: false  resources:    chain:      strategy:        content:          enabled: true
+          paths: /**
+    
+    
+    
 #mybatis配置
 mybatis:  type-aliases-package: cr.clown.blog.entity
   #配置映射文件

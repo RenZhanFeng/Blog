@@ -16,9 +16,28 @@
 		SELECT * FROM user;
 	</select>
 	
+	<select id="queryUserById" resultMap="userInfoMap">
+		SELECT * FROM `user` WHERE `id` = #{id};
+	</select>
+	
+	<select id="queryUserByName" resultMap="userInfoMap">
+		SELECT * FROM `user` WHERE `username` = #{username};
+	</select>
+	
 	<insert id="insertUser" parameterType="cr.clown.blog.entity.User">
 		INSERT INTO `user` (`id`, `username`, `password`, `nickname`, `picture`, `createTime`, `updateTime`) 
-		VALUES (#{id}, #{username}, #{password}, #{nickname}, #{picture}, #{createTime}, #{updateTime})
-
+		VALUES (#{id}, #{username}, #{password}, #{nickname}, #{picture}, #{createTime}, #{updateTime});
 	</insert>
+	
+	<update id="updateUser" parameterType="cr.clown.blog.entity.User">
+		UPDATE `user`
+		SET 
+		`username` = #{username}, `password` = #{password}, `nickname` = #{nickname}, `picture` = #{picture}, `createTime` = #{createTime}, `updateTime` = #{updateTime}
+		WHERE
+		`id` = #{id};
+	</update>
+	
+	<delete id="delUserById" parameterType="cr.clown.blog.entity.User">
+		DELETE FROM `user` WHERE `id` = #{id};
+	</delete>
 </mapper>
