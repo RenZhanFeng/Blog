@@ -20,7 +20,7 @@
 		SELECT * FROM `user` WHERE `id` = #{id};
 	</select>
 	
-	<select id="queryUserByName" resultMap="userInfoMap">
+	<select id="queryUserByName" parameterType="String" resultType="cr.clown.blog.entity.User">
 		SELECT * FROM `user` WHERE `username` = #{username};
 	</select>
 	

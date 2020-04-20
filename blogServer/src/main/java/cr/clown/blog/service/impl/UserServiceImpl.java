@@ -1,15 +1,14 @@
 package cr.clown.blog.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.executor.ExecutorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cr.clown.blog.dao.UserDao;
 import cr.clown.blog.entity.User;
 import cr.clown.blog.enums.UserEnum;
+import cr.clown.blog.exception.BlogException;
 import cr.clown.blog.service.UserService;
 
 /**
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	 * 通过用户ID查询用户信息
 	 */
 	@Override
-	public User queryUserById(Integer uid) {
+	public User queryUserById(String uid) {
 		// TODO 通过用户ID查询用户信息
 		if (uid == null ) {//参数uid判空
 			throw new RuntimeException("info queryUserById ..." + UserEnum.USER_ID_NOT_NULL.getMessage());
@@ -58,17 +57,18 @@ public class UserServiceImpl implements UserService {
 	 * 通过用户名查询用户信息
 	 */
 	@Override
-	public List<User> queryUserByName(String username) {
+	public User queryUserByName(String username) {
 		// TODO 通过用户名查询用户信息
 		if (username == null || "".equals(username)) {//参数username判空
 			throw new RuntimeException("info queryUserByName ..." + UserEnum.USERNAME_NOT_NUll.getMessage());
 		}
 		//执行查询
-		List<User> users = userDao.queryUserByName(username);
-		if (users.equals(null)) {//结果判空
-			throw new RuntimeException("info queryUserByName ..." + UserEnum.USER_NOT_EXITS.getMessage());
+		User user = userDao.queryUserByName(username);
+		if (user.equals(null)) {//结果判空
+			//throw new RuntimeException("info queryUserByName ..." + UserEnum.USER_NOT_EXITS.getMessage());
+			throw new BlogException("4", UserEnum.USER_NOT_EXITS.getMessage(), "/selByName", "没有该用户的信息");
 		}
-		return users;
+		return user;
 	}
 
 	/**
@@ -103,9 +103,9 @@ public class UserServiceImpl implements UserService {
 	 * 删除用户信息
 	 */
 	@Override
-	public boolean delUserById(Integer uid) {
+	public boolean delUserById(String uid) {
 		if (uid == null ) {//参数uid判空
-			throw new RuntimeException("info queryUserById ..." + UserEnum.USER_ID_NOT_NULL.getMessage());
+			throw new RuntimeException("info delUserById ..." + UserEnum.USER_ID_NOT_NULL.getMessage());
 		}
 		int i = userDao.delUserById(uid);
 		return (i > 0) ? true: false;

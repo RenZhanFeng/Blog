@@ -21,13 +21,13 @@ public interface UserService {
 	 * 通过ID查询用户信息
 	 * @return 用户信息
 	 */
-	User queryUserById(Integer uid);
+	User queryUserById(String uid);
 	
 	/**
 	 * 通过用户名查询用户信息
 	 * @return 用户信息
 	 */
-	List<User> queryUserByName(String username);
+	User queryUserByName(String username);
 	
 	/**
 	 * 添加用户信息
@@ -46,5 +46,5 @@ public interface UserService {
 	 * @param uid 用户ID
 	 * @return
 	 */
-	boolean delUserById(Integer uid);
+	boolean delUserById(String uid);
 }

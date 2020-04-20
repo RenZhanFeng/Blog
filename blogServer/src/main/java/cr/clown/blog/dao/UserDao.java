@@ -21,13 +21,13 @@ public interface UserDao {
 	 * 通过ID查询用户信息
 	 * @return 用户信息
 	 */
-	User queryUserById(Integer uid);
+	User queryUserById(String uid);
 	
 	/**
 	 * 通过用户名查询用户信息
 	 * @return 用户信息
 	 */
-	List<User> queryUserByName(String username);
+	User queryUserByName(String username);
 	
 	/**
 	 * 添加用户信息
@@ -45,6 +45,6 @@ public interface UserDao {
 	 * 删除用户信息
 	 * @return 
 	 */
-	Integer delUserById(Integer uid);
+	Integer delUserById(String uid);
 
 }
