@@ -1,10 +1,11 @@
-package cr.ms.service;
+package cr.ms.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cr.ms.dao.UserDao;
 import cr.ms.pojo.User;
+import cr.ms.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -1,5 +1,7 @@
 package cr.ms.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +23,7 @@ public class LoginController {
 	@CrossOrigin
 	@PostMapping(value = "/api/login")
 	@ResponseBody
-	public Result Login(@RequestBody User requestUser) {
+	public Result Login(@RequestBody User requestUser, HttpSession session) {
 		System.out.println("into login...");
 		//对html标签进行转义，防止xss攻击
 		String username = requestUser.getUsername();
@@ -31,6 +33,8 @@ public class LoginController {
 		if( null == user) {
 			return new Result(400, "账号密码错误");
 		}else {
+			//设置Session对象user
+			session.setAttribute("user", user);
 			return new Result(200, "用户" + username + "登录成功");
 		}
 	}
