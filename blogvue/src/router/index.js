@@ -18,13 +18,17 @@ const routes = [
   {
     path: '/index',
     name: "Appindex",
-    component: Appindex
+    component: Appindex,
+    meta: {
+      requireAuth: true
+    }
   }
 
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history'
 });
 
 export default router;

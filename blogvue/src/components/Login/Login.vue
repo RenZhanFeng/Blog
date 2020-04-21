@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-form class="login-container">
-      <h3 class="login_title">系统登录111</h3>
+      <h3 class="login_title">系统登录</h3>
       <el-form-item>
         <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="账号"></el-input>
       </el-form-item>
@@ -34,10 +34,17 @@ export default {
           username: this.loginForm.username,
           password: this.loginForm.password
         })
-        .then(successResponse => {
-          if (successResponse.data.code === 200) {
-            this.$router.push({ path: "/index" });
+        .then(resolve => {
+          if (resolve.data.code === 200) {
+            this.$store.commit("login", this.loginForm);
+            let path = this.$route.query.redirect;
+            this.$router.push({
+              path: path === "/" || path === undefined ? "/index" : path
+            });
           }
+        })
+        .catch(reject => {
+          console.log(reject);
         });
     }
   }

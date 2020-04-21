@@ -18,6 +18,22 @@ Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false;
 
+//每一次路由跳转都验证身份信息
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (store.state.user.username) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    }
+  } else {
+    next()
+  }
+})
+
 new Vue({
   router,
   store,
