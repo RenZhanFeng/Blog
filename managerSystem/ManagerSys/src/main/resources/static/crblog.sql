@@ -30,6 +30,10 @@ CREATE TABLE `book` (
   CONSTRAINT `fk_book_category_on_cid` FOREIGN KEY (`cid`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
 
+NSERT INTO `crblog`.`book` (`id`, `cover`, `title`, `author`, `date`, `press`, `abs`, `cid`) VALUES ('1', '封面1', '标题1', '张三', '20202222', '220', 'ss', '1');
+INSERT INTO `crblog`.`book` (`id`, `cover`, `title`, `author`, `date`, `press`, `abs`, `cid`) VALUES ('2', '封面2', '标题2', '李四', '20202222', '220', 'ss', '2');
+INSERT INTO `crblog`.`book` (`id`, `cover`, `title`, `author`, `date`, `press`, `abs`, `cid`) VALUES ('3', '封面3', '标题3', '王五', '20202222', '220', '啥', '3');
+
 /*创建分类表（category）*/
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
@@ -37,3 +41,10 @@ CREATE TABLE `category` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `crblog`.`category` (`id`, `name`) VALUES ('1', '校园');
+INSERT INTO `crblog`.`category` (`id`, `name`) VALUES ('2', '都市');
+INSERT INTO `crblog`.`category` (`id`, `name`) VALUES ('3', '玄幻');
+INSERT INTO `crblog`.`category` (`id`, `name`) VALUES ('4', '修真');
+

@@ -23,14 +23,14 @@ public class Book {
 	
 	@ManyToOne //多对一
 	@JoinColumn(name = "cid")
-	private Category category;
+	private Category category;//分类
 	
-	private String cover;
-	private String title;
-	private String author;
-	private String date;
-	private String press;
-	private String abs;
+	private String cover;//封面
+	private String title;//标题（书名）
+	private String author;//作者
+	private String date;//出版日期
+	private String press;//出版社
+	private String abs;//简介
 	
 	
 	public Integer getId() {
