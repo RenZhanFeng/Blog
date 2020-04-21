@@ -27,6 +27,7 @@ module.exports = {
     resolve: {
       alias: {
         'components': '@/components',
+        'common': '@/components/common',
         'stylus': '@/common/stylus',
         'font': '@/common/font',
         'assets': '@/assets',

@@ -22,7 +22,7 @@ export default {
     return {
       loginForm: {
         username: "admin",
-        password: "123456"
+        password: "123"
       },
       responseResult: []
     };
