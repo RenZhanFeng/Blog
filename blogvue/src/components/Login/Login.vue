@@ -29,11 +29,20 @@ export default {
   },
   methods: {
     login() {
+      // this.$axios
+      //   .post("/login", {
+      //     username: this.loginForm.username,
+      //     password: this.loginForm.password
+      //   })
+      //   .then(successResponse => {
+      //     if (successResponse.data.code === 200) {
+      //       this.$router.replace({ path: "/index" });
+      //     }
+      //   });
       this.$axios
-        .post("/login", {
-          username: this.loginForm.username,
-          password: this.loginForm.password
-        })
+        .get(
+          `login2?username=${this.loginForm.username}&password=${this.loginForm.password}`
+        )
         .then(successResponse => {
           if (successResponse.data.code === 200) {
             this.$router.replace({ path: "/index" });
