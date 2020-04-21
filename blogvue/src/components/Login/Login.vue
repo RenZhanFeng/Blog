@@ -41,7 +41,7 @@ export default {
       //   });
       this.$axios
         .get(
-          "/login2?username: this.loginForm.username&password: this.loginForm.password"
+          `login2?username=${this.loginForm.username}&password=${this.loginForm.password}`
         )
         .then(successResponse => {
           if (successResponse.data.code === 200) {
