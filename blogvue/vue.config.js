@@ -9,6 +9,18 @@ module.exports = {
         jQuery: "jquery",
         "window.jQuery": "jquery",
         Popper: ["popper.js", "default"]
+      }),
+      new webpack.LoaderOptionsPlugin({
+        //设置代理
+        proxy: {
+          '/api': {
+            target: 'http://localhost:8443',
+            changeOrigin: true,
+            pathRewrite: {
+              '^/api': ''
+            }
+          }
+        }
       })
     ],
     //配置路径别名
@@ -20,21 +32,5 @@ module.exports = {
         'assets': '@/assets',
       }
     },
-    //设置代理
-    plugins: [
-      new webpack.LoaderOptionsPlugin({
-        proxyTable: {
-          '/api': {
-            target: 'http://localhost:8443',
-            changeOrigin: true,
-            pathRewrite: {
-              '^/api': ''
-            }
-          }
-        }
-      })
-    ]
-
   },
-
 };
