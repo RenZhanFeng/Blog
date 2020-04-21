@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +17,10 @@ import cr.ms.result.Result;
 public class LoginController {
 	
 	
-	@RequestMapping("/")
+	@RequestMapping("/s")
+	@ResponseBody
 	public String index() {
-		return "index";
+		return "indexsss";
 	}
 
 	@CrossOrigin
@@ -36,25 +36,8 @@ public class LoginController {
 			System.out.println("test");
 			return new Result(400, message);
 		}else {
-			return new Result(200);
+			return new Result(200, "用户" + username + "登录成功");
 		}
 	}
 	
-	@CrossOrigin
-	@GetMapping(value = "api/login2")
-	@ResponseBody
-	public Result Login2(@RequestBody User requestUser) {
-		//对html标签进行转义，防止xss攻击
-		String username = requestUser.getUsername();
-		username = HtmlUtils.htmlEscape(username);
-		
-		if( !Objects.equals("admin", username) || !Objects.equals("12346", requestUser.getPassword()) ) {
-			String message = "账号密码错误";
-			System.out.println("test");
-			return new Result(400, message);
-		}else {
-			return new Result(200);
-		}
-
-	}
 }
