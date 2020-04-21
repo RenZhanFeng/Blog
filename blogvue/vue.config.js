@@ -21,15 +21,20 @@ module.exports = {
       }
     },
     //设置代理
-    // proxyTable: {
-    //   '/api': {
-    //     target: 'http://localhost:8443',
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/api': ''
-    //     }
-    //   }
-    // }
+    plugins: [
+      new webpack.LoaderOptionsPlugin({
+        proxyTable: {
+          '/api': {
+            target: 'http://localhost:8443',
+            changeOrigin: true,
+            pathRewrite: {
+              '^/api': ''
+            }
+          }
+        }
+      })
+    ]
+
   },
 
 };

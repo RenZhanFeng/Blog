@@ -57,8 +57,11 @@ export default {
 }
 
 .login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 15px;
-  margin: 90px auto;
   width: 350px;
   padding: 35px 35px 15px 35px;
   background: #fff;
