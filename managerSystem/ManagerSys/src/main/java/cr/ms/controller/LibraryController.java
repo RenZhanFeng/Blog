@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import cr.ms.pojo.Book;
+import cr.ms.result.BookResult;
+import cr.ms.result.Result;
 import cr.ms.service.BookService;
 import cr.ms.util.StringUtils;
 
@@ -34,8 +36,12 @@ public class LibraryController {
 	 * @throws Exception
 	 */
 	@GetMapping("/books")
-	public List<Book> bookLists() throws Exception {
-		return bookService.bookLists();
+	public BookResult bookLists() throws Exception {
+		List<Book> books = bookService.bookLists();
+		if (!books.equals(null)) {
+			return new BookResult(200, "圖書列表", books);
+		}
+		return new BookResult(500, "數據為空", books);
 	}
 	
 	/**
@@ -66,14 +72,14 @@ public class LibraryController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GetMapping("/category/{cid}/books")
-	public List<Book> listByCategory(@PathVariable("cid") int cid) throws Exception {
-		if (0 != cid) {
-			return bookService.listByCategory(cid);
-		}else {
-			return bookLists();
-		}
-	}
+//	@GetMapping("/category/{cid}/books")
+//	public List<Book> listByCategory(@PathVariable("cid") int cid) throws Exception {
+//		if (0 != cid) {
+//			return bookService.listByCategory(cid);
+//		}else {
+//			return bookLists();
+//		}
+//	}
 	
 	/**
 	 * 封面上传
