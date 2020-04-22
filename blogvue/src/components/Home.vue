@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="home">
     <nav-menu></nav-menu>
     <router-view />
   </div>
 </template>
 
 <script>
-import NavMenu from "common/NavMenu";
+import NavMenu from "components/NavBar/NavMenu";
 export default {
   name: "Home",
   components: {
