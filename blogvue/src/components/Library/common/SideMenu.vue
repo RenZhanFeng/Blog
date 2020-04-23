@@ -1,32 +1,47 @@
 <template>
-  <el-menu class="categories">
+  <el-menu class="categories" default-active="0">
+    <el-menu-item class="Item" index="0" @click="handleSelect(0)">
+      <template>
+        <i class="el-icon-s-grid"></i>
+        全部
+      </template>
+    </el-menu-item>
     <el-menu-item
       class="Item"
-      v-for="(item, index) in navList"
+      v-for="(item, index) in categories"
       :key="index"
-      :index="index.toString()"
+      :index="String(item.id)"
+      @click="handleSelect(item.id)"
     >
       <template>
-        <i :class="item.icon"></i>
-        {{item.title}}
+        <i class="el-icon-ship"></i>
+        {{item.name}}
       </template>
     </el-menu-item>
   </el-menu>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  data() {
-    return {
-      navList: [
-        { title: "全部", icon: "el-icon-s-grid" },
-        { title: "流行", icon: "el-icon-pear" },
-        { title: "文化", icon: "el-icon-ice-cream-round" },
-        { title: "生活", icon: "el-icon-cherry" },
-        { title: "经管", icon: "el-icon-burger" },
-        { title: "科技", icon: "el-icon-cold-drink" }
-      ]
-    };
+  mounted() {
+    this.getCategoryList();
+  },
+  computed: {
+    ...mapState(["categories"])
+  },
+  methods: {
+    handleSelect(cid) {
+      this.$emit("categoryCid", cid);
+    },
+    //获取分类数据
+    getCategoryList() {
+      this.$axios.get("/categories").then(resolve => {
+        if (resolve.data.code === 200) {
+          this.$store.state.categories = resolve.data.data;
+        }
+      });
+    }
   }
 };
 </script>

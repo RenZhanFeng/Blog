@@ -4,12 +4,12 @@
       <el-col :xs="0" :sm="3" :md="3" :lg="5"></el-col>
       <el-col :xs="0" :sm="5" :md="3" :lg="2">
         <el-aside class="asideBar hidden-xs-only">
-          <side-menu></side-menu>
+          <side-menu @categoryCid="categoryData"></side-menu>
         </el-aside>
       </el-col>
       <el-col :xs="24" :sm="19" :md="15" :lg="12">
         <el-main class="books-area">
-          <books></books>
+          <books ref="booksArea"></books>
         </el-main>
       </el-col>
       <el-col :xs="0" :sm="3" :md="3" :lg="5"></el-col>
@@ -24,6 +24,20 @@ export default {
   components: {
     SideMenu,
     Books
+  },
+  methods: {
+    categoryData(cid) {
+      let url = `/categories/${cid}/books`;
+      if (cid === 0) {
+        this.$refs.booksArea.loadBooks();
+      } else {
+        this.$axios.get(url).then(resolve => {
+          if (resolve.data.code === 200) {
+            this.$refs.booksArea.books = resolve.data.data;
+          }
+        });
+      }
+    }
   }
 };
 </script>
@@ -36,7 +50,7 @@ export default {
 
 .books-area {
   margin-left: 20px;
-  margin-bottom :30px
+  margin-bottom: 30px;
 }
 
 .books-area, .asideBar {

@@ -10,8 +10,9 @@
   >
     <el-menu-item v-for="(item, index) in navList" :key="index" :index="item.name">{{item.navItem}}</el-menu-item>
     <div>
-      <a href="#more" class="more">更多功能</a>
-      <i class="el-icon-menu moreIcon"></i>
+      <a href="#more" class="more">
+        <i class="el-icon-menu moreIcon"></i>更多功能
+      </a>
     </div>
   </el-menu>
 </template>
@@ -28,7 +29,7 @@ export default {
         { name: "/admin", navItem: "个人中心" }
       ]
     };
-  },
+  }
 };
 </script>
 
@@ -45,15 +46,16 @@ export default {
   color: #222;
   line-height: 60px;
 }
-.el-menu-demo{
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+.el-menu-demo {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
 @media screen and (max-width: 768px) {
   .more {
     display: none;
   }
-  .moreIcon {
+  .el-icon-menu {
+    float: left !important;
     margin-right: 10px;
   }
 }
