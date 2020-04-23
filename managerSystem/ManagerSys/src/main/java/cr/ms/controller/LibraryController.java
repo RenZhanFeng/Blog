@@ -87,15 +87,14 @@ public class LibraryController {
 	@GetMapping("/search")
 	public Result searchResult(@RequestParam("keywords") String keywords) throws Exception {
 		//关键词为空时查询所有书籍
-		List<Book> books = new ArrayList<Book>();
 		if ("".equals(keywords)) {
-			bookLists();
+			return this.bookLists();
 		}
-		books = bookService.search(keywords);
-		if (!keywords.equals(null)) {
+		List<Book> books = bookService.search(keywords);
+		if (!books.isEmpty()) {
 			return ResultUtil.success(books);
 		}
-		return ResultUtil.fail("搜索结果不存在");
+		return ResultUtil.fail("很抱歉，无法搜索到该书籍");
 	}
 	
 	/**
