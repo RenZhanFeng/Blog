@@ -1,7 +1,7 @@
 <template>
   <el-menu
     router
-    :default-active="'/index'"
+    :default-active="RoutingPpath"
     class="el-menu-demo"
     mode="horizontal"
     background-color="white"
@@ -21,13 +21,14 @@ export default {
   name: "NavMenu",
   data() {
     return {
+      RoutingPpath: this.$route.path,
       navList: [
         { name: "/index", navItem: "博客首页" },
         { name: "/library", navItem: "图书馆" },
         { name: "/admin", navItem: "个人中心" }
       ]
     };
-  }
+  },
 };
 </script>
 
@@ -43,6 +44,9 @@ export default {
   font-size: 20px;
   color: #222;
   line-height: 60px;
+}
+.el-menu-demo{
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
 }
 
 @media screen and (max-width: 768px) {
