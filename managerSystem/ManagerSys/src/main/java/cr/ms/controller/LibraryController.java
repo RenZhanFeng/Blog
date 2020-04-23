@@ -73,7 +73,7 @@ public class LibraryController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GetMapping("/category/{cid}/books")
+	@GetMapping("/categories/{cid}/books")
 	public Result listByCategory(@PathVariable("cid") int cid) throws Exception {
 		if (0 != cid) {
 			return ResultUtil.success(bookService.listByCategory(cid));
