@@ -21,6 +21,7 @@ import cr.ms.pojo.Book;
 import cr.ms.result.BookResult;
 import cr.ms.result.Result;
 import cr.ms.service.BookService;
+import cr.ms.util.ResultUtil;
 import cr.ms.util.StringUtils;
 
 @RequestMapping("/api")
@@ -36,12 +37,12 @@ public class LibraryController {
 	 * @throws Exception
 	 */
 	@GetMapping("/books")
-	public BookResult bookLists() throws Exception {
+	public Result bookLists() throws Exception {
 		List<Book> books = bookService.bookLists();
 		if (!books.equals(null)) {
-			return new BookResult(200, "圖書列表", books);
+			return ResultUtil.success(books);
 		}
-		return new BookResult(500, "數據為空", books);
+		return ResultUtil.fail("");
 	}
 	
 	/**
@@ -72,14 +73,14 @@ public class LibraryController {
 	 * @return
 	 * @throws Exception
 	 */
-//	@GetMapping("/category/{cid}/books")
-//	public List<Book> listByCategory(@PathVariable("cid") int cid) throws Exception {
-//		if (0 != cid) {
-//			return bookService.listByCategory(cid);
-//		}else {
-//			return bookLists();
-//		}
-//	}
+	@GetMapping("/category/{cid}/books")
+	public Result listByCategory(@PathVariable("cid") int cid) throws Exception {
+		if (0 != cid) {
+			return ResultUtil.success(bookService.listByCategory(cid));
+		}else {
+			return ResultUtil.fail("分类不存在");
+		}
+	}
 	
 	/**
 	 * 封面上传

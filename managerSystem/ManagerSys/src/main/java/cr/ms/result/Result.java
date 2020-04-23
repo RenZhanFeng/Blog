@@ -24,6 +24,12 @@ public class Result<T> {
 		this.code = code;
 		this.msg = msg;
 	}
+	
+	public Result(Integer code, String msg, T data) {
+		this.code = code;
+		this.msg = msg;
+		this.data = data;
+	}
 
 	public Integer getCode() {
 		return code;
