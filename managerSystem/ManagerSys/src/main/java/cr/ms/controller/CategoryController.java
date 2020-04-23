@@ -26,7 +26,7 @@ public class CategoryController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GetMapping("/category/books")
+	@GetMapping("/categories")
 	public Result categoryList() throws Exception {
 		List<Category> categoryLists =  categoryService.list();
 		if(!categoryLists.equals(null)) {
