@@ -4,7 +4,7 @@ import java.util.List;
 
 import cr.ms.pojo.Book;
 
-public class BookResult extends Result {
+public class BookResult{
 	
 	//响应码
 	private Integer code;
@@ -20,7 +20,6 @@ public class BookResult extends Result {
 	}
 
 	public BookResult(Integer code, String msg, List<Book> books) {
-		super();
 		this.code = code;
 		this.msg = msg;
 		this.books = books;

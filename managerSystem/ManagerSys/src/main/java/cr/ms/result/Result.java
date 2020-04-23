@@ -1,12 +1,19 @@
 package cr.ms.result;
 
-public class Result {
+/**
+ * http请求返回的最外层对象
+ * @author Clown
+ *
+ */
+public class Result<T> {
 
 	//响应码
-	private Integer code;
+	private Integer code; //响应码
 	
-	private String msg;
-		
+	private String msg;  //提示信息
+	
+	private T data; //具体内容
+	
 	public Result(){}
 	
 	public Result(int code) {
@@ -33,7 +40,13 @@ public class Result {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	
-	
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
 	
 }
