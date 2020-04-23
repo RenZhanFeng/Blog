@@ -1,10 +1,17 @@
 package cr.ms.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
@@ -19,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import cr.ms.enums.BookEnum;
+import cr.ms.enums.ResultCode;
 import cr.ms.pojo.Book;
 import cr.ms.result.BookResult;
 import cr.ms.result.Result;
@@ -44,7 +53,7 @@ public class LibraryController {
 		if (!books.equals(null)) {
 			return ResultUtil.success(books);
 		}
-		return ResultUtil.fail("");
+		return ResultUtil.fail(BookEnum.BOOK_QUERY_FAIL.getMessage());
 	}
 	
 	/**
@@ -54,9 +63,15 @@ public class LibraryController {
 	 * @throws Exception
 	 */
 	@PostMapping("/books")
-	public Book addOrUpdate(@RequestBody Book book) throws Exception {
+	public Result addOrUpdate(@RequestBody Book book) throws Exception {
+		System.out.println(book.toString());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String date = (String)book.getDate().toString();
+		String date1 = sdf.format(date);
+		book.setDate(date1);
+		System.out.println(date1);
 		bookService.addOrUpdate(book);
-		return book;
+		return ResultUtil.success(book);
 	}
 	
 	/**
@@ -65,8 +80,9 @@ public class LibraryController {
 	 * @throws Exception
 	 */
 	@PostMapping("/delete")
-	public void delete(@RequestBody Book book) throws Exception {
+	public Result delete(@RequestBody Book book) throws Exception {
 		bookService.deleteById(book.getId());
+		return ResultUtil.success(book.getTitle() + BookEnum.BOOK_DELETE_SUCCESS.getMessage());
 	}
 	
 	/**
@@ -91,7 +107,7 @@ public class LibraryController {
 			return this.bookLists();
 		}
 		List<Book> books = bookService.search(keywords);
-		if (!books.isEmpty()) {
+		if (books != null && !books.isEmpty()) {
 			return ResultUtil.success(books);
 		}
 		return ResultUtil.fail("很抱歉，无法搜索到该书籍");
@@ -128,6 +144,58 @@ public class LibraryController {
 	        return "";
 		}
 		
+	}
+	
+	
+	@GetMapping("/file")
+	public String downloadImage(String imgName, HttpServletRequest request, HttpServletResponse response)  {
+		
+		String fileUrl = System.getProperty("user.dir").concat("\\api\\file\\") + imgName;
+//		String fileUrl = request.getRequestURL() + imgName;
+		if(fileUrl != null) {//目标文件是否存在
+			fileUrl = fileUrl.replace("\\", "/").toString();
+			File file = new File(fileUrl);
+			if(file.exists()) {//文件存在
+				//设置响应头
+				response.setContentType("image/jpeg"); //设置强制下载不打开
+				response.addHeader("Content-Disposition", "attachment;fileName=" + imgName);
+				//response.setHeader("Context-Type", "application/x-jpg");
+
+				byte[] bf = new byte[1024];
+				FileInputStream fis = null;
+				BufferedInputStream bis = null;
+						
+				try {
+					fis = new FileInputStream(file);
+	                bis = new BufferedInputStream(fis);
+					OutputStream os = response.getOutputStream();
+					int i = bis.read(bf);;
+					while(i != -1) {
+						os.write(bf, 0, i);
+						i = bis.read(bf);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+				}		
+			}
+		}
+		return null;
 	}
 	
 }
