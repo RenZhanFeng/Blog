@@ -65,11 +65,11 @@ public class LibraryController {
 	@PostMapping("/books")
 	public Result addOrUpdate(@RequestBody Book book) throws Exception {
 		System.out.println(book.toString());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String date = (String)book.getDate().toString();
-		String date1 = sdf.format(date);
-		book.setDate(date1);
-		System.out.println(date1);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//		String date = (String)book.getDate().toString();
+//		String date1 = sdf.format(date);
+//		book.setDate(date1);
+//		System.out.println(date1);
 		bookService.addOrUpdate(book);
 		return ResultUtil.success(book);
 	}

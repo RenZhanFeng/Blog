@@ -81,6 +81,12 @@ public class Book {
 	public void setAbs(String abs) {
 		this.abs = abs;
 	}
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", category=" + category + ", cover=" + cover + ", title=" + title + ", author="
+				+ author + ", date=" + date + ", press=" + press + ", abs=" + abs + "]";
+	}
+	
 	
 	
 }
