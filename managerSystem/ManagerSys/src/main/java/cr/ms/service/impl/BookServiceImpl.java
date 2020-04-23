@@ -59,8 +59,14 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public List<Book> findAllByTitleLikeOrAuthorLike(String keyword1, String keyword2) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookDao.findAllByTitleLikeOrAuthorLike('%' + keyword1 + '%', '%' + keyword2 + '%');
 	}
+
+	@Override
+	public List<Book> search(String keywords) {
+		return bookDao.findAllByTitleLikeOrAuthorLike('%' + keywords + '%', '%' + keywords + '%');
+	}
+	
+	
 
 }

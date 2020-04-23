@@ -33,4 +33,6 @@ public interface BookService {
 	 * @return 图书列表
 	 */
 	List<Book> findAllByTitleLikeOrAuthorLike(String keyword1, String keyword2);
+	
+	List<Book> search(String keywords);
 }

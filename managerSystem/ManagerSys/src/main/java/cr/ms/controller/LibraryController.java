@@ -2,6 +2,7 @@ package cr.ms.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -80,6 +82,20 @@ public class LibraryController {
 		}else {
 			return ResultUtil.fail("分类不存在");
 		}
+	}
+	
+	@GetMapping("/search")
+	public Result searchResult(@RequestParam("keywords") String keywords) throws Exception {
+		//关键词为空时查询所有书籍
+		List<Book> books = new ArrayList<Book>();
+		if ("".equals(keywords)) {
+			bookLists();
+		}
+		books = bookService.search(keywords);
+		if (!keywords.equals(null)) {
+			return ResultUtil.success(books);
+		}
+		return ResultUtil.fail("搜索结果不存在");
 	}
 	
 	/**
