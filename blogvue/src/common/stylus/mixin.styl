@@ -5,8 +5,25 @@ no-wrap() {
     white-space: nowrap;
 }
 
+// 圆角 + 阴影
 Shadow() {
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+// 预占位
+holdParent(padding) {
+    position: relative;
+    padding-top: padding;
+    background: #f7f3f3;
+    border-radius: 4px;
+}
+
+holdChild() {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
 }

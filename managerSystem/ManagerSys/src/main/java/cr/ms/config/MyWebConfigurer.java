@@ -42,7 +42,7 @@ public class MyWebConfigurer implements WebMvcConfigurer {
 	
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + "D:/software/eclipse/eclipse-workspace/BlogSystem/Blog/managerSystem/ManagerSys/api/file/");
+        registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + "C:/Users/Administrator/Desktop/R/Blog/managerSystem/ManagerSys/api/file/");
     }
 
 

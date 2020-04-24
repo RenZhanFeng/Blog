@@ -35,7 +35,7 @@ export default {
 }
 @media screen and (max-width: 786px) {
   .searchBar {
-    width: 100%;
+    width: 80%;
     margin-top: 0;
   }
 }

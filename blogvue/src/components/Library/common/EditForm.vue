@@ -20,17 +20,23 @@
         </el-form-item>
         <el-form-item label="封面" prop="cover">
           <el-input v-model="form.cover" placeholder="图片 URL"></el-input>
+          <img-upload @onUpload="uploadImg" ref="imgUpload(response)"></img-upload>
         </el-form-item>
+
         <el-form-item label="简介" prop="abs">
           <el-input type="textarea" v-model="form.abs"></el-input>
         </el-form-item>
         <el-form-item label="分类" prop="cid">
-          <el-select v-model="form.cid" placeholder="请选择分类" ref="select">
-            <el-option v-for="(item,index) in categories" :key="index" :value="item.id" :label="item.name"></el-option>
+          <el-select v-model="form.category" value-key="id" placeholder="请选择分类" ref="select">
+            <el-option
+              v-for="(item,index) in categories"
+              :key="index"
+              :value="{'id':item.id,'name':item.name}"
+              :label="item.name"
+            ></el-option>
           </el-select>
         </el-form-item>
       </el-form>
-
       <div class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取消</el-button>
         <el-button type="primary" @click="onSubmit">确定</el-button>
@@ -41,12 +47,14 @@
 
 <script>
 import { mapState } from "vuex";
+import ImgUpload from "components/Library/common/ImgUpload";
 export default {
   name: "EditForm",
   data() {
     return {
       dialogFormVisible: false,
       form: {
+        id: "",
         title: "",
         author: "",
         date: "",
@@ -60,6 +68,7 @@ export default {
       }
     };
   },
+  components: { ImgUpload },
   computed: {
     ...mapState(["categories"])
   },
@@ -67,33 +76,42 @@ export default {
     //关闭表单时清除表单内容
     clear() {
       this.form = {
+        id: "",
         title: "",
         author: "",
         date: "",
         press: "",
         cover: "",
         abs: "",
-        cid: ""
+        category: ""
       };
     },
     //点击确定提交表单
     onSubmit() {
-      this.$axios.post("/books", {
-        cover: this.form.cover,
-        title: this.form.title,
-        author: this.form.author,
-        date: this.form.date.toJSON(),
-        press: this.form.press,
-        abs: this.form.abs,
-        cid: this.form.cid
-      }).then(resolve =>{
-          if(resolve.data === 200){
-              this.dialogFormVisible = false
-              this.$emit('onSubmit')
+      this.$axios
+        .post("/books", {
+          id: this.form.id,
+          cover: this.form.cover,
+          title: this.form.title,
+          author: this.form.author,
+          date: this.form.date,
+          press: this.form.press,
+          abs: this.form.abs,
+          category: this.form.category
+        })
+        .then(resolve => {
+          if (resolve.data.code === 200) {
+            this.dialogFormVisible = false;
+            this.$emit("onSubmit");
           }
-      }).catch(reject =>{
-          console.log(reject)
-      })
+        })
+        .catch(reject => {
+          console.log(reject);
+        });
+    },
+    //上传图片
+    uploadImg(response) {
+      this.form.cover = response;
     }
   }
 };
@@ -101,11 +119,12 @@ export default {
 
 <style scoped>
 .el-icon-circle-plus-outline {
-  display: flex;
-  justify-content: center;
-  margin: 45px 0;
-  font-size: 100px;
+  position: absolute;
+  right: 0;
+  top: 10px;
+  font-size: 30px;
   cursor: pointer;
+  color: #409eff;
 }
 .dialog-footer {
   text-align: right;
