@@ -70,7 +70,7 @@ public class LibraryController {
 	@PostMapping("/books")
 	public Result addOrUpdate(@RequestBody Book book) throws Exception {
 		System.out.println("传入的book对象" + book.toString());
-		System.out.println(book.getCategory());
+		System.out.println(book.getDate());
 		
 		//通过分类id设置分类值name
 		Category category = categoryService.getCategoryById(book.getCategory().getId());
@@ -94,8 +94,9 @@ public class LibraryController {
 	@PostMapping("/delete")
 	public Result delete(@RequestBody Book book) throws Exception {
 		bookService.deleteById(book.getId());
-		return ResultUtil.success(book.getTitle() + BookEnum.BOOK_DELETE_SUCCESS.getMessage());
+		return ResultUtil.success(BookEnum.BOOK_DELETE_SUCCESS.getMessage());
 	}
+
 	
 	/**
 	 * 分类查询图书列表
@@ -135,7 +136,7 @@ public class LibraryController {
 	@PostMapping("/covers")
 	public String coversUpload(@RequestBody MultipartFile file) throws Exception {
 		//获取项目路径
-		String folder = System.getProperty("user.dir").concat("/src/main/resources/static/img");
+		String folder = System.getProperty("user.dir").concat("/api/file");
 		//创建文件保存文件夹
 		File imgFolder = new File(folder);
 //		String fileName = file.getOriginalFilename();  //获取文件名
