@@ -29,9 +29,11 @@ import org.springframework.web.multipart.MultipartFile;
 import cr.ms.enums.BookEnum;
 import cr.ms.enums.ResultCode;
 import cr.ms.pojo.Book;
+import cr.ms.pojo.Category;
 import cr.ms.result.BookResult;
 import cr.ms.result.Result;
 import cr.ms.service.BookService;
+import cr.ms.service.CategoryService;
 import cr.ms.util.ResultUtil;
 import cr.ms.util.StringUtils;
 
@@ -41,6 +43,9 @@ public class LibraryController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	/**
 	 * 图书列表
@@ -64,7 +69,14 @@ public class LibraryController {
 	 */
 	@PostMapping("/books")
 	public Result addOrUpdate(@RequestBody Book book) throws Exception {
-		System.out.println(book.toString());
+		System.out.println("传入的book对象" + book.toString());
+		System.out.println(book.getCategory());
+		
+		//通过分类id设置分类值name
+		Category category = categoryService.getCategoryById(book.getCategory().getId());
+		//设置分类属性
+		book.setCategory(category);
+		System.out.println("修改后的book对象" + book.toString());
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 //		String date = (String)book.getDate().toString();
 //		String date1 = sdf.format(date);
