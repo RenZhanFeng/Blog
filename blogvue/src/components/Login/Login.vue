@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" @keydown.enter="login">
     <el-form class="login-container">
       <h3 class="login_title">系统登录</h3>
       <el-form-item>
@@ -9,7 +9,7 @@
         <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" class="loginBtn" v-on:click="login">登录</el-button>
+        <el-button type="primary" class="loginBtn" @click="login">登录</el-button>
       </el-form-item>
     </el-form>
   </div>

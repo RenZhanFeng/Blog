@@ -1,5 +1,5 @@
 <template>
-  <div class="searchMain">
+  <div class="searchMain" @keydown.enter="searchClick">
     <el-input
       class="searchBar input-with-select"
       placeholder="请输入书名或作者"
