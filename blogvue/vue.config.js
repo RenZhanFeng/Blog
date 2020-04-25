@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 
 module.exports = {
+  publicPath: './',
   configureWebpack: {
     plugins: [
       new webpack.LoaderOptionsPlugin({
@@ -28,3 +29,4 @@ module.exports = {
     },
   },
 };
+
