@@ -1,10 +1,10 @@
 <template>
-  <div>Hello World!</div>
+  <div>Hello World!,我是首页</div>
 </template>
 
 <script>
 export default {
-  name: "AppIndex"
+  name: "Index"
 };
 </script>
 

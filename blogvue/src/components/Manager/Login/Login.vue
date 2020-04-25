@@ -58,7 +58,7 @@ export default {
   position: fixed;
   height: 100%;
   width: 100%;
-  background: url('../../assets/bimg.jpg');
+  background: url('~assets/bimg.jpg');
   background-position: center;
   background-size: cover;
 }
@@ -74,6 +74,7 @@ export default {
   background: #fff;
   border: 1px solid #eaeaea;
   box-shadow: 0 0 25px #cac6c6;
+  opacity: 0.8;
 }
 
 .login_title {
@@ -86,5 +87,11 @@ export default {
   width: 100%;
   background: #505458;
   border: none;
+}
+
+@media screen and (max-width: 786px) {
+  .login-container {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
 }
 </style>

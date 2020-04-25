@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Login from 'components/Login/Login';
-import Appindex from 'components/Home/Appindex'
-import Home from 'components/Home'
-import LibraryIndex from 'components/Library/LibraryIndex'
+import Login from 'Mcomponents/Login/Login';
+import Index from 'Fcomponents/Index/Index'
+import Front from 'Fcomponents/Front'
+import LibraryIndex from 'Fcomponents/Library/LibraryIndex'
 
 Vue.use(VueRouter);
 
@@ -18,16 +18,16 @@ const routes = [
     component: Login
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home,
-    //home页面不需要被访问
+    path: '/front',
+    name: 'Front',
+    component: Front,
+    //Front页面不需要被访问
     redirect: '/index',
     children: [
       {
         path: '/index',
-        name: "Appindex",
-        component: Appindex,
+        name: "Index",
+        component: Index,
         meta: {
           requireAuth: true
         }

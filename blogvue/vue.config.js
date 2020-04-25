@@ -21,6 +21,8 @@ module.exports = {
     resolve: {
       alias: {
         'components': '@/components',
+        'Fcomponents': '@/components/Front',
+        'Mcomponents': '@/components/Manager',
         'common': '@/components/common',
         'stylus': '@/common/stylus',
         'font': '@/common/font',
