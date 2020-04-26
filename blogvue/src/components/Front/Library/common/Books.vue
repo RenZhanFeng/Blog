@@ -221,5 +221,6 @@ export default {
   right: 10px;
   bottom: 10px;
   background: #fff;
+  padding: 8px 0 0 5px;
 }
 </style>

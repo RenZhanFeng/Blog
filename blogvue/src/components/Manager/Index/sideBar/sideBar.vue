@@ -1,9 +1,9 @@
 <template>
-  <el-aside class="sidBar">
+  <div class="sidBar">
     <el-menu class="elmenu" default-active="2-2" :collapse="isCollapse" active-text-color="#009688">
       <div class="sidebarLogo">
         <img class="logo" src="~assets/logo.png" alt="logo" />
-        <h1 class="title">博客后台</h1>
+        <h1 v-show="!isCollapse">博客后台</h1>
       </div>
       <el-submenu index="1">
         <template slot="title">
@@ -22,7 +22,7 @@
         <el-menu-item index="2-2">图书内容管理</el-menu-item>
       </el-submenu>
     </el-menu>
-  </el-aside>
+  </div>
 </template>
 
 <script>
@@ -32,13 +32,18 @@ export default {
     return {
       isCollapse: false
     };
+  },
+  methods: {
+    shift() {
+      this.isCollapse = !this.isCollapse;
+      console.log(this.isCollapse);
+    }
   }
 };
 </script>
 
 <style scoped>
 .sidBar {
-  width: 200px !important;
   background: #fff;
 }
 .elmenu {
@@ -52,11 +57,10 @@ export default {
   box-sizing: border-box;
   padding: 5px 20px;
 }
-.sidebarLogo h1{
+.sidebarLogo h1 {
   margin-left: 10px;
 }
-.sidebarLogo img{
+.sidebarLogo img {
   width: 35px;
 }
-
 </style>
