@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ClassUtils;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,15 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import cr.ms.enums.BookEnum;
-import cr.ms.enums.ResultCode;
 import cr.ms.pojo.Book;
 import cr.ms.pojo.Category;
-import cr.ms.result.BookResult;
 import cr.ms.result.Result;
 import cr.ms.service.BookService;
 import cr.ms.service.CategoryService;
 import cr.ms.util.ResultUtil;
-import cr.ms.util.StringUtils;
+
 
 @RequestMapping("/api")
 @RestController
@@ -70,7 +64,7 @@ public class LibraryController {
 	@PostMapping("/books")
 	public Result addOrUpdate(@RequestBody Book book) throws Exception {
 		System.out.println("传入的book对象" + book.toString());
-		System.out.println(book.getDate());
+		System.out.println(book.getDate().toString());
 		
 		//通过分类id设置分类值name
 		Category category = categoryService.getCategoryById(book.getCategory().getId());
@@ -150,7 +144,8 @@ public class LibraryController {
 		try {
 			System.out.println("目标文件保存于：" + destFile);
 			file.transferTo(destFile); //保存文件
-			String imgURL = "http://localhost:8443/api/file/" + destFile.getName();
+			String imgURL = "http://clownz.xyz:8220/api/file/" + destFile.getName();
+			System.out.println();
 			return imgURL;
 		} catch (IOException e) {
 			e.printStackTrace();
