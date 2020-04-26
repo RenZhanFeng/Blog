@@ -4,19 +4,17 @@ import Login from 'Mcomponents/Login/Login';
 import Index from 'Fcomponents/Index/Index'
 import Front from 'Fcomponents/Front'
 import LibraryIndex from 'Fcomponents/Library/LibraryIndex'
+import Manager from 'Mcomponents/Manager'
+import ManagerIndex from 'Mcomponents/Index/managerIndex'
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    redirect: '/library'
+    redirect: '/index'
   },
-  {
-    path: '/login',
-    name: "Login",
-    component: Login
-  },
+  //前台路由
   {
     path: '/front',
     name: 'Front',
@@ -28,14 +26,31 @@ const routes = [
         path: '/index',
         name: "Index",
         component: Index,
-        meta: {
-          requireAuth: true
-        }
       },
       {
         path: '/library',
         name: 'Library',
         component: LibraryIndex,
+      }
+    ]
+  },
+  //后台路由
+  {
+    path: '/manager',
+    name: 'Manager',
+    component: Manager,
+    //Front页面不需要被访问
+    redirect: 'manager/login',
+    children: [
+      {
+        path: 'login',
+        name: "Login",
+        component: Login
+      },
+      {
+        path: 'index',
+        name: 'ManagerIndex',
+        component: ManagerIndex,
         meta: {
           requireAuth: true
         }

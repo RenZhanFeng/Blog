@@ -39,7 +39,7 @@ export default {
             this.$store.commit("login", this.loginForm);
             let path = this.$route.query.redirect;
             this.$router.push({
-              path: path === "/" || path === undefined ? "/index" : path
+              path: path === "/manager/index" || path === undefined ? "/manager/index" : path
             });
           }
         })

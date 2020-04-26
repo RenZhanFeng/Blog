@@ -25,8 +25,7 @@ export default {
       RoutingPpath: this.$route.path,
       navList: [
         { name: "/index", navItem: "博客首页" },
-        { name: "/library", navItem: "图书馆" },
-        { name: "/admin", navItem: "个人中心" }
+        { name: "/library", navItem: "图书馆" }
       ]
     };
   }
