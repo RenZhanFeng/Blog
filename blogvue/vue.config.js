@@ -1,14 +1,14 @@
 const webpack = require("webpack");
 
 module.exports = {
-  publicPath: './',
+  publicPath: '/',
   configureWebpack: {
     plugins: [
       new webpack.LoaderOptionsPlugin({
         //设置代理
         proxy: {
           '/api': {
-            target: 'http://localhost:8443',
+            target: 'http://clownz.xyz:8443',
             changeOrigin: true,
             pathRewrite: {
               '^/api': ''

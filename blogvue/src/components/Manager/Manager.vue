@@ -1,6 +1,5 @@
 <template>
   <div class="manager">
-    <nav-menu></nav-menu>
     <router-view />
   </div>
 </template>
@@ -10,7 +9,7 @@
 export default {
   name: "Manager",
   components: {
-    NavMenu
+
   }
 };
 </script>

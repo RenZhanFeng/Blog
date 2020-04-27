@@ -50,7 +50,7 @@ CREATE TABLE `book` (
   PRIMARY KEY (`id`),
   KEY `fk_book_category_on_cid` (`cid`),
   CONSTRAINT `fk_book_category_on_cid` FOREIGN KEY (`cid`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-)DEFAULT CHARSET=utf8;
+)  DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book
