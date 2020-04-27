@@ -7,8 +7,10 @@ import 'stylus/reset.styl'
 import 'font/iconfont.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import mavonEditor from 'mavon-editor'
 
 Vue.use(ElementUI)
+Vue.use(mavonEditor)
 
 //设置反向代理，前端请求默认发送到 http://localhost:8443/api
 axios.defaults.baseURL = 'http://clownz.xyz:8443/api'

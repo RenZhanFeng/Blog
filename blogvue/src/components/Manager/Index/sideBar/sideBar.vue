@@ -1,6 +1,6 @@
 <template>
   <div class="sidBar">
-    <el-menu class="elmenu" default-active="2-2" :collapse="isCollapse" active-text-color="#009688">
+    <el-menu class="elmenu" default-active="/blog" :collapse="isCollapse" active-text-color="#009688">
       <div class="sidebarLogo">
         <img class="logo" src="~assets/logo.png" alt="logo" />
         <h1 v-show="!isCollapse">博客后台</h1>
@@ -18,7 +18,7 @@
           <i class="el-icon-document"></i>
           <span slot="title">内容管理</span>
         </template>
-        <el-menu-item index="2-1">博客内容管理</el-menu-item>
+        <el-menu-item index="/blog">博客内容管理</el-menu-item>
         <el-menu-item index="2-2">图书内容管理</el-menu-item>
       </el-submenu>
     </el-menu>

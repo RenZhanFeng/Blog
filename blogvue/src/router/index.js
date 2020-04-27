@@ -6,6 +6,7 @@ import Front from 'Fcomponents/Front'
 import LibraryIndex from 'Fcomponents/Library/LibraryIndex'
 import Manager from 'Mcomponents/Manager'
 import ManagerIndex from 'Mcomponents/Index/managerIndex'
+import ArticleEditor from 'Mcomponents/Index/content/ArticleEditor'
 
 Vue.use(VueRouter);
 
@@ -53,7 +54,14 @@ const routes = [
         component: ManagerIndex,
         meta: {
           requireAuth: true
-        }
+        },
+        children: [
+          {
+            path: 'blog',
+            name: 'ArticleEditor',
+            component: ArticleEditor,
+          }
+        ]
       }
     ]
   }
