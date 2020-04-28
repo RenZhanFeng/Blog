@@ -20,7 +20,7 @@
         </el-form-item>
         <el-form-item label="封面" prop="cover">
           <el-input v-model="form.cover" placeholder="图片 URL"></el-input>
-          <img-upload @onUpload="uploadImg" ref="imgUpload(response)"></img-upload>
+          <img-upload @on-success="uploadImg" ref="imgUpload"></img-upload>
         </el-form-item>
 
         <el-form-item label="简介" prop="abs">
@@ -109,7 +109,7 @@ export default {
           console.log(reject);
         });
     },
-    //上传图片
+    //上传图片成功就修改form的数据
     uploadImg(response) {
       this.form.cover = response;
     }

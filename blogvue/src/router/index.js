@@ -6,7 +6,7 @@ import Front from 'Fcomponents/Front'
 import LibraryIndex from 'Fcomponents/Library/LibraryIndex'
 import Manager from 'Mcomponents/Manager'
 import ManagerIndex from 'Mcomponents/Index/managerIndex'
-import ArticleEditor from 'Mcomponents/Index/content/ArticleEditor'
+import blogEditor from 'Mcomponents/Index/content/blogEditor'
 
 Vue.use(VueRouter);
 
@@ -57,9 +57,9 @@ const routes = [
         },
         children: [
           {
-            path: 'blog',
-            name: 'ArticleEditor',
-            component: ArticleEditor,
+            path: 'blogEditor',
+            name: 'blogEditor',
+            component: blogEditor,
           }
         ]
       }

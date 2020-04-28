@@ -8,7 +8,8 @@ module.exports = {
         //设置代理
         proxy: {
           '/api': {
-            target: 'http://clownz.xyz:8443',
+            // target: 'http://clownz.xyz:8443',http://localhost:8443/api
+            target: 'http://localhost:8443/api',
             changeOrigin: true,
             pathRewrite: {
               '^/api': ''
