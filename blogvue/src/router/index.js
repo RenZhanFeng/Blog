@@ -6,7 +6,7 @@ import Front from 'Fcomponents/Front'
 import LibraryIndex from 'Fcomponents/Library/LibraryIndex'
 import Manager from 'Mcomponents/Manager'
 import ManagerIndex from 'Mcomponents/Index/managerIndex'
-import blogEditor from 'Mcomponents/Index/content/blogEditor'
+import blogEditor from 'Mcomponents/Index/blog/blogEditor'
 
 Vue.use(VueRouter);
 
