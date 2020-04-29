@@ -24,8 +24,8 @@ export default {
     return {
       fileList: [],
       url: "",
-      action:'http://localhost:8443/api/covers'
-      // action: "http://clownz.xyz:8443/api/covers"
+      // action:'http://localhost:8443/api/covers'
+      action: "http://clownz.xyz:8443/api/covers"
     };
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
     handleSuccess(response) {
       this.$emit("onUpload", response);
       this.$message.warning("上传成功");
-      this.clear()
+      this.clear();
     },
     //清除文件
     clear() {

@@ -68,7 +68,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route)
+    console.log(this.$route);
     if (this.$route.params.article) {
       this.article = this.$route.params.article;
     }
@@ -77,7 +77,6 @@ export default {
     //保存文章
     saveArticles(value, render) {
       // value 是 md格式，render 是 html格式
-      console.log(value, render);
       this.$confirm("是否保存并发布文章", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -91,7 +90,7 @@ export default {
             articleContentHtml: render,
             articleAbstract: this.article.articleAbstract,
             articleCover: this.article.articleCover,
-            articleDate: this.article.articleDate
+            articleDate: this.formatDate(new Date())
           });
         })
         .catch(reject => {
@@ -101,6 +100,16 @@ export default {
     //上传图片成功就修改article的数据
     uploadImg(response) {
       this.article.articleCover = response;
+    },
+    //格式化日期对象
+    formatDate(date) {
+      let year = date.getFullYear();
+      let month = date.getMonth() - 1;
+      month = month < 10 ? `0${month}` : month;
+      let day = date.getDate();
+      day = day < 10 ? `0${day}` : day;
+      let newDate = `${year}-${month}-${day}`;
+      return newDate;
     }
   }
 };
