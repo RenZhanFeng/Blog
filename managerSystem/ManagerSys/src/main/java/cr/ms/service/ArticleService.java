@@ -15,7 +15,13 @@ public interface ArticleService {
 	 */
 	List<Article> listArticles();
 	
+	/**
+	 * 分页查询全部文章列表
+	 * @return
+	 */
 	Page<Article> listArticles(int pageNum, int size);
+	
+	
 	/**
 	 * 通过ID查找文章
 	 * @param id 文章id

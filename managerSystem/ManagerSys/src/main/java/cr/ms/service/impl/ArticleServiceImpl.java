@@ -71,7 +71,6 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public void deleteArticleById(int aid) {
 		articleDao.deleteById(aid);
-		
 	}
 
 

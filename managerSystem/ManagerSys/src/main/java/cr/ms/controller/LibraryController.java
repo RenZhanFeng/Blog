@@ -63,14 +63,14 @@ public class LibraryController {
 	 */
 	@PostMapping("/books")
 	public Result addOrUpdate(@RequestBody Book book) throws Exception {
-		System.out.println("传入的book对象" + book.toString());
+//		System.out.println("传入的book对象" + book.toString());
 		System.out.println(book.getDate().toString());
 		
 		//通过分类id设置分类值name
 		Category category = categoryService.getCategoryById(book.getCategory().getId());
 		//设置分类属性
 		book.setCategory(category);
-		System.out.println("修改后的book对象" + book.toString());
+//		System.out.println("修改后的book对象" + book.toString());
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 //		String date = (String)book.getDate().toString();
 //		String date1 = sdf.format(date);
