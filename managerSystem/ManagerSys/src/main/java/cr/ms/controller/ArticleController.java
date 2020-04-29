@@ -41,9 +41,9 @@ public class ArticleController {
 	 * @return
 	 */
 	@GetMapping("/articles")
-	public Page<Article> listArticles(@RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "size", defaultValue = "10") int size) {
+	public Result listArticles(@RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "size", defaultValue = "10") int size) {
 		System.out.println(page + "---size: " + size);
-	    return articleService.listArticles(page, size);
+	    return ResultUtil.success(articleService.listArticles(page, size));
 	}
 	
 	/**
