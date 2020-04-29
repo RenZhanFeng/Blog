@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import cr.ms.dao.ArticleDao;
@@ -17,15 +19,29 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
 	
+	
 	/**
 	 * 查询全部文章列表
 	 * @return
 	 */
 	@Override
 	public List<Article> listArticles() {
-		//id降序
+		// 排序方式，这里是以“id”为标准进行降序
 		Sort sort = new Sort(Sort.Direction.DESC, "id");
 		return articleDao.findAll(sort);
+	}
+	
+	/**
+	 * 分页查询全部文章列表
+	 * @return
+	 */
+	@Override
+	public Page<Article> listArticles(int pageNum, int size) {
+		// 排序方式，这里是以“id”为标准进行降序
+		Sort sort = new Sort(Sort.Direction.DESC, "id");//记住一定要是实体类的属性，而不能是数据库的字段
+		Pageable pageable = PageRequest.of(pageNum-1, size, sort);
+		Page<Article> articleLists = articleDao.findAll(pageable);
+		return articleLists;
 	}
 
 	
@@ -57,6 +73,9 @@ public class ArticleServiceImpl implements ArticleService {
 		articleDao.deleteById(aid);
 		
 	}
+
+
+	
 
 	
 }

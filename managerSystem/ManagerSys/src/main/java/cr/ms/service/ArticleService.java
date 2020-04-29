@@ -2,6 +2,8 @@ package cr.ms.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import cr.ms.pojo.Article;
 
 public interface ArticleService {
@@ -13,7 +15,7 @@ public interface ArticleService {
 	 */
 	List<Article> listArticles();
 	
-	
+	Page<Article> listArticles(int pageNum, int size);
 	/**
 	 * 通过ID查找文章
 	 * @param id 文章id
