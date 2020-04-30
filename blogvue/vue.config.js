@@ -24,7 +24,7 @@ module.exports = {
         'components': '@/components',
         'Fcomponents': '@/components/Front',
         'Mcomponents': '@/components/Manager',
-        'common': '@/components/common',
+        'common': '@/common',
         'stylus': '@/common/stylus',
         'font': '@/common/font',
         'assets': '@/assets',

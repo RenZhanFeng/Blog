@@ -1,10 +1,11 @@
 <template>
-  <el-row class="index">
+  <el-row class="index" type="flex" justify="center">
     <el-col class="userInof card" :xs="24" :sm="4" :md="4" :lg="4">
       <user-info></user-info>
     </el-col>
     <el-col class="blogList card" :xs="24" :sm="16" :md="14" :lg="11">
-      <blog-list></blog-list>
+      <router-view></router-view>
+      <blog-list v-show="this.$router.currentRoute.path === '/index'"></blog-list>
     </el-col>
     <el-col class="blogCategory card" :xs="24" :sm="4" :md="4" :lg="3">
       <el-row>

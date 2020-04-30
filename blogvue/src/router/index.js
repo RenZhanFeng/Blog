@@ -7,6 +7,7 @@ import LibraryIndex from 'Fcomponents/Library/LibraryIndex'
 import Manager from 'Mcomponents/Manager'
 import ManagerIndex from 'Mcomponents/Index/managerIndex'
 import blogEditor from 'Mcomponents/Index/blog/blogEditor'
+import BlogDetails from 'Fcomponents/Index/common/blogDetails'
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,13 @@ const routes = [
         path: '/index',
         name: "Index",
         component: Index,
+        children: [
+          {
+            path: 'blogDetails/:id',
+            name: "blogDetails",
+            component: BlogDetails
+          }
+        ]
       },
       {
         path: '/library',
@@ -40,7 +48,7 @@ const routes = [
     path: '/manager',
     name: 'Manager',
     component: Manager,
-    //Front页面不需要被访问
+    //manager页面不需要被访问
     redirect: 'manager/login',
     children: [
       {

@@ -104,11 +104,17 @@ export default {
     //格式化日期对象
     formatDate(date) {
       let year = date.getFullYear();
-      let month = date.getMonth() - 1;
-      month = month < 10 ? `0${month}` : month;
+      let month = date.getMonth() + 1;
       let day = date.getDate();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      month = month < 10 ? `0${month}` : month;
       day = day < 10 ? `0${day}` : day;
-      let newDate = `${year}-${month}-${day}`;
+      hours = hours < 10 ? `0${hours}` : hours;
+      minutes = minutes < 10 ? `0${minutes}` : minutes;
+      seconds = seconds < 10 ? `0${seconds}` : seconds;
+      let newDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
       return newDate;
     }
   }

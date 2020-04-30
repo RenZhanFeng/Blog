@@ -24,6 +24,15 @@
           <p>{{item.articleAbstract}}</p>
         </div>
       </div>
+      <div class="list-go">
+        <i class="el-icon-document"></i>
+        <span>
+          <a href="javascript:" @click="goDetails(item)">
+            查看详情
+            <i class="el-icon-arrow-right"></i>
+          </a>
+        </span>
+      </div>
     </el-col>
     <el-col>
       <el-pagination
@@ -57,7 +66,6 @@ export default {
         .get(`/articles?page=1&size=${this.pageSize}`)
         .then(resolve => {
           if (resolve.data.code === 200) {
-            console.log(resolve);
             this.articles = resolve.data.data.content;
             this.total = resolve.data.data.totalElements;
             this.$store.commit(
@@ -73,10 +81,17 @@ export default {
         .get(`/articles?page=${page}&size=${this.pageSize}`)
         .then(resolve => {
           if (resolve.data.code === 200) {
-            console.log(page, resolve);
             this.articles = resolve.data.data.content;
           }
         });
+    },
+    //点击查看详情跳转页面
+    goDetails(item) {
+      this.$router.push({
+        name: "blogDetails",
+        params: { id: item.articleTitle },
+        query:item.id
+      });
     }
   }
 };
@@ -129,5 +144,18 @@ export default {
   font-size: 15px;
   color: #999;
   line-height: 20px;
+}
+
+.list-go {
+  text-align: right;
+  font-size: 12px;
+}
+
+.list-go a {
+  color: #1890ff;
+}
+
+.list-go a:hover {
+  color: #40a9ff;
 }
 </style>

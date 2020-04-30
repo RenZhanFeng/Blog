@@ -28,7 +28,9 @@
         <el-divider content-position="center">社交账号</el-divider>
         <div class="contact-icon">
           <el-tooltip effect="dark" content="https://github.com/RenZhanFeng" placement="top-start">
-            <i class="iconfont icon-github"></i>
+            <a href="https://github.com/RenZhanFeng" target="_blank" rel="noopener">
+              <i class="iconfont icon-github"></i>
+            </a>
           </el-tooltip>
           <el-tooltip effect="dark" content="微信号" placement="top">
             <i class="iconfont icon-shejiao-weixin"></i>
@@ -47,7 +49,7 @@
 
 <script>
 export default {
-  name: "userInfo",
+  name: "userInfo"
 };
 </script>
 
@@ -98,7 +100,7 @@ export default {
   justify-content: space-around;
   padding-top: 10px;
   color: #999;
-  text-align center
+  text-align: center;
 }
 
 .user-statistics div {
