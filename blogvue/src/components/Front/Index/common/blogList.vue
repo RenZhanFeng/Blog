@@ -89,8 +89,7 @@ export default {
     goDetails(item) {
       this.$router.push({
         name: "blogDetails",
-        params: { id: item.articleTitle },
-        query:item.id
+        params: { id: item.id }
       });
     }
   }

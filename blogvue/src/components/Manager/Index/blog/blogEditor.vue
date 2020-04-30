@@ -8,7 +8,7 @@
         <el-breadcrumb-item>编辑器</el-breadcrumb-item>
       </el-breadcrumb>
     </el-row>-->
-
+    <!-- <el-button @click="deleteArticle">点击我删除文章</el-button> -->
     <el-row class="inputTitle">
       <el-input v-model="article.articleTitle" placeholder="请输入标题"></el-input>
     </el-row>
@@ -68,12 +68,24 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route);
     if (this.$route.params.article) {
       this.article = this.$route.params.article;
     }
   },
   methods: {
+    //删除文章
+    // deleteArticle() {
+    //   this.$prompt("输入你要删除的文章的id", "询问", {
+    //     confirmButtonText: "确定",
+    //     cancelButtonText: "取消"
+    //   }).then((res) => {
+    //     this.$axios.get("/admin/article/" + res.value).then(resp => {
+    //       if (resp && resp.status === 200) {
+    //         console.log(resp)
+    //       }
+    //     });
+    //   });
+    // },
     //保存文章
     saveArticles(value, render) {
       // value 是 md格式，render 是 html格式
