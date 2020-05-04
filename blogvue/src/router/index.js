@@ -1,13 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Login from 'Mcomponents/Login/Login';
 import Index from 'Fcomponents/Index/Index'
 import Front from 'Fcomponents/Front'
 import LibraryIndex from 'Fcomponents/Library/LibraryIndex'
+import BlogDetails from 'Fcomponents/Index/common/blogDetails'
+import Login from 'Mcomponents/Login/Login';
 import Manager from 'Mcomponents/Manager'
 import ManagerIndex from 'Mcomponents/Index/managerIndex'
-import blogEditor from 'Mcomponents/Index/blog/blogEditor'
-import BlogDetails from 'Fcomponents/Index/common/blogDetails'
+import BlogEditor from 'Mcomponents/Index/blog/blogEditor'
+import BlogManagement from 'Mcomponents/Index/blog/blogManagement'
+
+
 
 Vue.use(VueRouter);
 
@@ -60,14 +63,26 @@ const routes = [
         path: 'index',
         name: 'ManagerIndex',
         component: ManagerIndex,
+        redirect: 'index/blogManagement',
         meta: {
           requireAuth: true
         },
         children: [
           {
+            path: 'blogManagement',
+            name: 'blogManagement',
+            component: BlogManagement,
+            meta: {
+              requireAuth: true
+            },
+          },
+          {
             path: 'blogEditor',
             name: 'blogEditor',
-            component: blogEditor,
+            component: BlogEditor,
+            meta: {
+              requireAuth: true
+            },
           }
         ]
       }

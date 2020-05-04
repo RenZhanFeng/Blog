@@ -1,14 +1,12 @@
 <template>
   <div class="blogEditor">
-    <!-- <el-row>
+    <el-row>
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/manager/index/blog'}">管理中心</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/manager/index/blog'}">内容管理</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/manager/index/blog'}">文章管理</el-breadcrumb-item>
-        <el-breadcrumb-item>编辑器</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/manager/index/blogManagement'}">博客内容管理</el-breadcrumb-item>
+        <el-breadcrumb-item>文章编辑</el-breadcrumb-item>
       </el-breadcrumb>
-    </el-row>-->
-    <!-- <el-button @click="deleteArticle">点击我删除文章</el-button> -->
+    </el-row>
     <el-row class="inputTitle">
       <el-input v-model="article.articleTitle" placeholder="请输入标题"></el-input>
     </el-row>
@@ -27,6 +25,7 @@
           @click="dialogVisible = true"
         ></button>
       </mavon-editor>
+      <el-button type="danger" class="commitBtn" @click="saveArticles">提交上传（暂时还是得 CTRL + S 提交）</el-button>
       <el-dialog :visible="dialogVisible" @close="dialogVisible = false">
         <el-divider content-position="left">摘要</el-divider>
         <el-input
@@ -68,24 +67,12 @@ export default {
     };
   },
   mounted() {
+    //在‘博客内容管理’页面点击编辑会传递article过来
     if (this.$route.params.article) {
       this.article = this.$route.params.article;
     }
   },
   methods: {
-    //删除文章
-    // deleteArticle() {
-    //   this.$prompt("输入你要删除的文章的id", "询问", {
-    //     confirmButtonText: "确定",
-    //     cancelButtonText: "取消"
-    //   }).then((res) => {
-    //     this.$axios.get("/admin/article/" + res.value).then(resp => {
-    //       if (resp && resp.status === 200) {
-    //         console.log(resp)
-    //       }
-    //     });
-    //   });
-    // },
     //保存文章
     saveArticles(value, render) {
       // value 是 md格式，render 是 html格式
@@ -95,18 +82,27 @@ export default {
         type: "warning"
       })
         .then(() => {
-          this.$axios.post("admin/content/article", {
-            id: this.article.id,
-            articleTitle: this.article.articleTitle,
-            articleContentMd: value,
-            articleContentHtml: render,
-            articleAbstract: this.article.articleAbstract,
-            articleCover: this.article.articleCover,
-            articleDate: this.formatDate(new Date())
-          });
+          this.$axios
+            .post("admin/content/article", {
+              id: this.article.id,
+              articleTitle: this.article.articleTitle,
+              articleContentMd: value,
+              articleContentHtml: render,
+              articleAbstract: this.article.articleAbstract,
+              articleCover: this.article.articleCover,
+              articleDate: this.formatDate(new Date())
+            })
+            .then(res => {
+              if (res.status === 200) {
+                this.$message({ type: "success", message: "提交成功" });
+              }
+            })
+            .catch(() => {
+              this.$message({ type: "error", message: "文章标题不能为空" });
+            });
         })
-        .catch(reject => {
-          console.log(reject);
+        .catch(() => {
+          this.$message({ type: "info", message: "已取消" });
         });
     },
     //上传图片成功就修改article的数据
@@ -137,7 +133,7 @@ export default {
 @import '~stylus/mixin';
 
 .mavonEditor {
-  height: calc(100vh - 160px);
+  height: calc(100vh - 250px);
 }
 
 .inputTitle {
@@ -146,7 +142,10 @@ export default {
   Shadow();
 }
 
-.img-upload {
+.img-upload, .commitBtn {
   margin: 10px 0;
+}
+
+.commitBtn {
 }
 </style>

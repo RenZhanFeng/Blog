@@ -3,7 +3,7 @@
     <el-col :span="24" class="item" v-for="(item,index) in articles" :key="index">
       <div class="list-Content">
         <div class="list-title">
-          <a href="javascript:">{{item.articleTitle}}</a>
+          <a href="javascript:" @click="goDetails(item)">{{item.articleTitle}}</a>
         </div>
         <div class="list-meta">
           <span>

@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     loadArticle() {
+      console.log(this.$route)
       this.$axios.get(`/article/${this.$route.params.id}`).then(resolve => {
         if (resolve.data.code === 200) {
           console.log(resolve)
