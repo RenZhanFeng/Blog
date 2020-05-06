@@ -8,9 +8,7 @@
       <blog-list v-show="this.$router.currentRoute.path === '/index'"></blog-list>
     </el-col>
     <el-col class="blogCategory card" :xs="24" :sm="4" :md="4" :lg="3">
-      <el-row>
-        <el-col :span="24" class="item">这里是分类</el-col>
-      </el-row>
+      <category></category>
     </el-col>
   </el-row>
 </template>
@@ -18,9 +16,14 @@
 <script>
 import BlogList from "Fcomponents/Index/common/blogList";
 import UserInfo from "Fcomponents/Index/common/userInfo";
+import Category from "Fcomponents/Index/common/category";
 export default {
   name: "Index",
-  components: { BlogList, UserInfo },
+  components: {
+    BlogList,
+    UserInfo,
+    Category
+  },
   data() {
     return {};
   }
