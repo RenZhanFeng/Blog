@@ -16,7 +16,7 @@
           <i class="el-icon-user"></i>
           <span slot="title">用户管理</span>
         </template>
-        <el-menu-item index="1-1">用户信息</el-menu-item>
+        <el-menu-item index="/manager/index/userInfo">用户信息</el-menu-item>
         <el-menu-item index="1-2">角色配置</el-menu-item>
       </el-submenu>
       <el-submenu index="2">

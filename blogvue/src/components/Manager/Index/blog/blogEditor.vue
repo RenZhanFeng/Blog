@@ -3,6 +3,7 @@
     <el-row>
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/manager/index/blog'}">管理中心</el-breadcrumb-item>
+        <el-breadcrumb-item>内容管理</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/manager/index/blogManagement'}">博客内容管理</el-breadcrumb-item>
         <el-breadcrumb-item>文章编辑</el-breadcrumb-item>
       </el-breadcrumb>

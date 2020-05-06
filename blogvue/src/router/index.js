@@ -10,6 +10,7 @@ import ManagerIndex from 'Mcomponents/Index/managerIndex'
 import BlogEditor from 'Mcomponents/Index/blog/blogEditor'
 import BlogManagement from 'Mcomponents/Index/blog/blogManagement'
 import Category from 'Mcomponents/Index/category/category'
+import UserInfo from 'Mcomponents/Index/user/userInfo'
 
 
 
@@ -89,6 +90,14 @@ const routes = [
             path: 'category',
             name: 'category',
             component: Category,
+            meta: {
+              requireAuth: true
+            },
+          },
+          {
+            path: 'userInfo',
+            name: 'userInfo',
+            component: UserInfo,
             meta: {
               requireAuth: true
             },
