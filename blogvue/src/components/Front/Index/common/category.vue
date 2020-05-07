@@ -1,11 +1,11 @@
 <template>
-  <el-row :span="24">
+  <el-row :span="24" class="item">
     <el-menu class="categories" default-active="0">
-      <el-menu-item class="Item" index="0" @click="handleSelect(0)">
+      <el-menu-item class="menuItem" index="0" @click="handleSelect(0)">
         <template>全部</template>
       </el-menu-item>
       <el-menu-item
-        class="Item"
+        class="menuItem"
         v-for="(item, index) in categories"
         :key="index"
         :index="String(item.id)"
@@ -42,11 +42,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='stylus'>
+@import '~stylus/mixin';
+
+.item {
+  margin-bottom: 20px;
+  padding: 20px;
+  Shadow();
+}
+
 .categories {
   border: 0;
 }
-.Item {
+
+.menuItem {
   text-align: center;
 }
 </style>
