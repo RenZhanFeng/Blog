@@ -2,10 +2,7 @@
   <el-row :span="24">
     <el-menu class="categories" default-active="0">
       <el-menu-item class="Item" index="0" @click="handleSelect(0)">
-        <template>
-          <i class="el-icon-s-grid"></i>
-          全部
-        </template>
+        <template>全部</template>
       </el-menu-item>
       <el-menu-item
         class="Item"
@@ -14,10 +11,7 @@
         :index="String(item.id)"
         @click="handleSelect(item.id)"
       >
-        <template>
-          <i class="el-icon-ship"></i>
-          {{item.name}}
-        </template>
+        <template>{{item.name}}</template>
       </el-menu-item>
     </el-menu>
   </el-row>
