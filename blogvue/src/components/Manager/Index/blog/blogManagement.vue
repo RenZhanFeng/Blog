@@ -3,7 +3,7 @@
     <el-row>
       <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
         <el-breadcrumb-item :to="{ path: '/manager/index' }">管理中心</el-breadcrumb-item>
-         <el-breadcrumb-item>内容管理</el-breadcrumb-item>
+        <el-breadcrumb-item>内容管理</el-breadcrumb-item>
         <el-breadcrumb-item>博客内容管理</el-breadcrumb-item>
       </el-breadcrumb>
     </el-row>
@@ -24,6 +24,7 @@
             </template>
           </el-table-column>
           <el-table-column label="题目（展开查看摘要）" prop="articleTitle"></el-table-column>
+          <el-table-column label="分类" prop="category.name"></el-table-column>
           <el-table-column label="发布日期" prop="articleDate" sortable></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
@@ -76,7 +77,7 @@ export default {
           if (resolve.data.code === 200) {
             this.articles = resolve.data.data.content;
             this.total = resolve.data.data.totalElements;
-            // console.log(this.articles);
+             console.log(this.articles);
           }
         });
     },

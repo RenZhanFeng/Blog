@@ -8,7 +8,7 @@ export default new Vuex.Store({
     user: {//登录
       username: window.localStorage.getItem('user') == null ? '' : JSON.parse(window.localStorage.getItem('user')).username
     },
-    categories: [],//图书分类
+    categories: [],//分类
     postsTotal: null,//文章数量
   },
   mutations: {

@@ -63,7 +63,11 @@ export default {
         articleContentMd: "",
         articleAbstract: "",
         articleCover: "",
-        articleDate: ""
+        articleDate: "",
+        category: {
+          id: 4,
+          name: "生活"
+        }
       }
     };
   },
@@ -91,15 +95,16 @@ export default {
               articleContentHtml: render,
               articleAbstract: this.article.articleAbstract,
               articleCover: this.article.articleCover,
-              articleDate: this.formatDate(new Date())
+              articleDate: this.formatDate(new Date()),
+              category: this.article.category
             })
             .then(res => {
               if (res.status === 200) {
                 this.$message({ type: "success", message: "提交成功" });
               }
             })
-            .catch(() => {
-              this.$message({ type: "error", message: "文章标题不能为空" });
+            .catch(reject => {
+              this.$message({ type: "error", message: reject });
             });
         })
         .catch(() => {
