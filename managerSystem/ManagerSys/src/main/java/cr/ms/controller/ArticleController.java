@@ -99,7 +99,7 @@ public class ArticleController {
 	 * 删除文章
 	 * @param id //文章id
 	 */
-	@GetMapping("/admin/article/{id}")
+	@PostMapping("/admin/article/{id}")
 	public Result delectArticle(@PathVariable("id") int aid) {
 		articleService.deleteArticleById(aid);
 		return ResultUtil.success(ArticleEnum.ARTICLE_DELETE_SUCCESS.getMessage());

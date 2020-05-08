@@ -20,6 +20,8 @@ public class Category {
 	private Integer id;
 	
 	private String name;
+	
+	private Integer sort;
 
 	public Integer getId() {
 		return id;
@@ -37,9 +39,17 @@ public class Category {
 		this.name = name;
 	}
 
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+	
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
+		return "Category [id=" + id + ", name=" + name + ", sort=" + sort + "]";
 	}
 	
 	

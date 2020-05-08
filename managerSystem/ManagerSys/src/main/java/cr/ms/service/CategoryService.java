@@ -10,4 +10,8 @@ public interface CategoryService {
 	
 	Category getCategoryById(int id);
 	
+	void addAndupdateCategory(Category category);
+	
+	void delCategory(int id);
+	
 }

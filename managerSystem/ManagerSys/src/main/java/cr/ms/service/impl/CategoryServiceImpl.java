@@ -26,4 +26,14 @@ public class CategoryServiceImpl implements CategoryService {
 		Category category = categoryDAO.findById(id).orElse(null);
 		return category;
 	}
+
+	@Override
+	public void addAndupdateCategory(Category category) {
+		categoryDAO.save(category);
+	}
+
+	@Override
+	public void delCategory(int id) {
+		categoryDAO.deleteById(id);
+	}
 }

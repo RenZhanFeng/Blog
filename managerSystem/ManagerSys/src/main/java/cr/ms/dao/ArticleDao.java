@@ -4,7 +4,6 @@ package cr.ms.dao;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import cr.ms.pojo.Article;
