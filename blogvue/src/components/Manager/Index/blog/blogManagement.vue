@@ -48,6 +48,7 @@
         background
         @current-change="handleCurrentChange"
         :page-size="pageSize"
+        :hide-on-single-page="true"
         :total="total"
       ></el-pagination>
     </el-row>
@@ -77,7 +78,6 @@ export default {
           if (resolve.data.code === 200) {
             this.articles = resolve.data.data.content;
             this.total = resolve.data.data.totalElements;
-             console.log(this.articles);
           }
         });
     },

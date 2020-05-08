@@ -36,6 +36,15 @@
           maxlength="255"
           show-word-limit
         ></el-input>
+        <el-divider content-position="left">分类</el-divider>
+        <el-select v-model="article.category" value-key="id" placeholder="请选择分类">
+          <el-option
+            v-for="(item, index) in categories"
+            :key="index"
+            :value="{'id':item.id,'name':item.name}"
+            :label="item.name"
+          ></el-option>
+        </el-select>
         <el-divider content-position="left">封面</el-divider>
         <div class="cover">
           <el-input v-model="article.articleCover" placeholder="图片 URL"></el-input>
@@ -52,6 +61,7 @@
 
 <script>
 import ImgUpload from "Fcomponents/Library/common/ImgUpload";
+import { formatDate } from "common/js/util";
 export default {
   name: "blogEditor",
   components: { ImgUpload },
@@ -64,11 +74,9 @@ export default {
         articleAbstract: "",
         articleCover: "",
         articleDate: "",
-        category: {
-          id: 4,
-          name: "生活"
-        }
-      }
+        category: {}
+      },
+      categories: []
     };
   },
   mounted() {
@@ -76,6 +84,7 @@ export default {
     if (this.$route.params.article) {
       this.article = this.$route.params.article;
     }
+    this.getCategoryList();
   },
   methods: {
     //保存文章
@@ -95,7 +104,7 @@ export default {
               articleContentHtml: render,
               articleAbstract: this.article.articleAbstract,
               articleCover: this.article.articleCover,
-              articleDate: this.formatDate(new Date()),
+              articleDate: formatDate(new Date()),
               category: this.article.category
             })
             .then(res => {
@@ -103,8 +112,8 @@ export default {
                 this.$message({ type: "success", message: "提交成功" });
               }
             })
-            .catch(reject => {
-              this.$message({ type: "error", message: reject });
+            .catch(() => {
+              this.$message({ type: "error", message: "一定要选分类和写标题" });
             });
         })
         .catch(() => {
@@ -115,21 +124,14 @@ export default {
     uploadImg(response) {
       this.article.articleCover = response;
     },
-    //格式化日期对象
-    formatDate(date) {
-      let year = date.getFullYear();
-      let month = date.getMonth() + 1;
-      let day = date.getDate();
-      let hours = date.getHours();
-      let minutes = date.getMinutes();
-      let seconds = date.getSeconds();
-      month = month < 10 ? `0${month}` : month;
-      day = day < 10 ? `0${day}` : day;
-      hours = hours < 10 ? `0${hours}` : hours;
-      minutes = minutes < 10 ? `0${minutes}` : minutes;
-      seconds = seconds < 10 ? `0${seconds}` : seconds;
-      let newDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-      return newDate;
+    //获取分类数据
+    getCategoryList() {
+      this.$axios.get("/categories").then(resolve => {
+        if (resolve.data.code === 200) {
+          this.categories = resolve.data.data;
+          console.log(this.categories);
+        }
+      });
     }
   }
 };
