@@ -20,7 +20,13 @@ public interface ArticleService {
 	 * @return
 	 */
 	Page<Article> listArticles(int pageNum, int size);
-	
+
+	/**
+	 * 通过分类查找文章列表
+	 * @param category 分类
+	 * @return
+	 */
+	List<Article> listByCategory(int page, int size, int cid);
 	
 	/**
 	 * 通过ID查找文章

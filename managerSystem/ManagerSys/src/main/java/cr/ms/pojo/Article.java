@@ -1,12 +1,14 @@
 package cr.ms.pojo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -34,6 +36,10 @@ public class Article {
      */
     @NotEmpty(message = "文章标题不能为空")
     private String articleTitle;
+    
+    @ManyToOne //多对一
+	@JoinColumn(name = "cid")
+	private Category category;//分类
 
     /**
      * Article content after render to html.

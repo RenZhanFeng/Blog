@@ -10,7 +10,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import cr.ms.dao.ArticleDao;
+import cr.ms.dao.CategoryDAO;
 import cr.ms.pojo.Article;
+import cr.ms.pojo.Book;
+import cr.ms.pojo.Category;
 import cr.ms.service.ArticleService;
 
 @Service
@@ -18,6 +21,9 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	@Autowired
 	private ArticleDao articleDao;
+	
+	@Autowired
+	private CategoryDAO categoryDao;
 	
 	
 	/**
@@ -44,6 +50,17 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleLists;
 	}
 
+	/**
+	 * 通过分类查找文章列表
+	 * @param cid 分类id
+	 * @return
+	 */
+	@Override
+	public List<Article> listByCategory(int page, int size, int cid) {
+		Pageable pageable = PageRequest.of(page, size, new Sort(Sort.Direction.DESC, "articleDate"));
+//		Page<Article> articleLists = articleDao.findAllByCategory(categoryDao.getOne(cid));
+		return articleDao.findAllByCategory(categoryDao.getOne(cid));
+	}
 	
 	/**
 	 * ID查找文章
@@ -72,9 +89,6 @@ public class ArticleServiceImpl implements ArticleService {
 	public void deleteArticleById(int aid) {
 		articleDao.deleteById(aid);
 	}
-
-
 	
-
 	
 }

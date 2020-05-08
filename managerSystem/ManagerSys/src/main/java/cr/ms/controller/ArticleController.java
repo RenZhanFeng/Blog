@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.elasticsearch.search.aggregations.pipeline.movavg.models.EwmaModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.util.Assert;
@@ -46,8 +47,18 @@ public class ArticleController {
 	 */
 	@GetMapping("/articles")
 	public Result listArticles(@RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "size", defaultValue = "10") int size) {
-		System.out.println(page + "---size: " + size);
 	    return ResultUtil.success(articleService.listArticles(page, size)) ;
+	}
+	
+	/**
+	 * 通过分类查询文章列表
+	 * @param size 页面显示的数量
+	 * @param page 页数
+	 * @return
+	 */
+	@GetMapping("/articles/cid={id}")
+	public Result listArticles(@RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "size", defaultValue = "10") int size, @PathVariable("id") int cid) {
+	    return ResultUtil.success(articleService.listByCategory(page, size, cid)) ;
 	}
 	
 	@GetMapping("/article/{id}")
@@ -63,14 +74,27 @@ public class ArticleController {
 	@PostMapping("/admin/content/article")
 	public Result saveArticle(@RequestBody Article article) {
 		articleService.addAndUpdateArticle(article);
-		if ("null".equals(String.valueOf(article.getId()))) {
-			String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-			System.out.println(nowTime);
+
+		System.out.println("id" + String.valueOf(article.getId()));
+//		if (!article.getArticleDate().equals(null)) {
+//			String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(TimeUtil.stringToDate(article.getArticleDate()));
+//			//String date= article.getArticleDate();
+//	
+//			article.setArticleDate(nowTime);
+//			System.out.println(nowTime);
+//		}	
+		if (article.getArticleDate() instanceof Date) {
+			Date new_name = (Date) article.getArticleDate();
+			
 		}
 		return ResultUtil.success(article);
 	}
 	
-	
+	public static void main(String[] args) {
+		String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		Date date =  new Date();
+		System.out.println(nowTime + "date = " + date);
+	}
 	/**
 	 * 删除文章
 	 * @param id //文章id
