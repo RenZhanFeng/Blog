@@ -37,10 +37,11 @@
     <el-col>
       <el-pagination
         background
-        layout="total, prev, pager, next, jumper"
+        :layout="layout"
         @current-change="handleCurrentChange"
         :page-size="pageSize"
         :total="total"
+        :hide-on-single-page="true"
       ></el-pagination>
     </el-col>
   </el-row>
@@ -53,13 +54,24 @@ export default {
     return {
       articles: [],
       pageSize: 10,
-      total: null
+      total: null,
+      layout: ""
     };
   },
   mounted() {
     this.loadArticles();
   },
+  created() {
+    window.addEventListener("resize", this.getLayout);
+    this.getLayout();
+  },
   methods: {
+    getLayout() {
+      return (this.layout =
+        window.innerWidth < 768
+          ? "total, prev, pager, next"
+          : "total, prev, pager, next, jumper");
+    },
     //初次进入页面加载第一页文章数据
     loadArticles() {
       this.$axios
