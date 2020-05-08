@@ -83,18 +83,13 @@ public class ArticleController {
 //			article.setArticleDate(nowTime);
 //			System.out.println(nowTime);
 //		}	
-		if (article.getArticleDate() instanceof Date) {
-			Date new_name = (Date) article.getArticleDate();
-			
-		}
+//		if (article.getArticleDate() instanceof Date) {
+//			Date new_name = (Date) article.getArticleDate();
+//			
+//		}
 		return ResultUtil.success(article);
 	}
 	
-	public static void main(String[] args) {
-		String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-		Date date =  new Date();
-		System.out.println(nowTime + "date = " + date);
-	}
 	/**
 	 * 删除文章
 	 * @param id //文章id

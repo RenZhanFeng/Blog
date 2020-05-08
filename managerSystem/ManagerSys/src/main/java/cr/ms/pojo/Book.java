@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity //表示这是一个实体类
 @Table(name = "book")//表示对应的表名是 user
@@ -23,6 +24,8 @@ public class Book {
 	
 	@ManyToOne //多对一
 	@JoinColumn(name = "cid")
+	@JsonProperty(value = "category")
+	@JsonIgnoreProperties(value = "create")
 	private Category category;//分类
 	
 	private String cover;//封面
@@ -31,7 +34,6 @@ public class Book {
 	private String date;//出版日期
 	private String press;//出版社
 	private String abs;//简介
-	
 	
 	public Integer getId() {
 		return id;

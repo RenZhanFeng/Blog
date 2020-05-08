@@ -1,9 +1,8 @@
 package cr.ms.dao;
 
 
-
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import cr.ms.pojo.Article;
@@ -24,6 +23,6 @@ public interface ArticleDao extends JpaRepository<Article,Integer>{
 	 * @param category 分类
 	 * @return
 	 */
-	List<Article> findAllByCategory(Category category);
+	Page<Article> findAllByCategory(Category category, Pageable pageable);
 	
 }

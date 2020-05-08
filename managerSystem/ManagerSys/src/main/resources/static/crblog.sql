@@ -21,20 +21,22 @@ INSERT INTO `user` VALUES ('1', 'admin', '123');
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL COMMENT '分类名',
+  `name` varchar(255) DEFAULT '' NOT NULL COMMENT '分类名',
   `sort` int(20) NOT NULL DEFAULT 0 COMMENT '排序',
+  `create_time` varchar(50) DEFAULT '' COMMENT '创建时间',
+  `update_time` varchar(50) DEFAULT '' COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '文学', '0');
-INSERT INTO `category` VALUES ('2', '流行', '0');
-INSERT INTO `category` VALUES ('3', '文化', '0');
-INSERT INTO `category` VALUES ('4', '生活', '0');
-INSERT INTO `category` VALUES ('5', '经管', '0');
-INSERT INTO `category` VALUES ('6', '科技', '0');
+INSERT INTO `category` VALUES ('1', '文学', '0', '2020-01-01', '2020-01-01');
+INSERT INTO `category` VALUES ('2', '流行', '0', '2020-01-01', '2020-01-01');
+INSERT INTO `category` VALUES ('3', '文化', '0', '2020-01-01', '2020-01-01');
+INSERT INTO `category` VALUES ('4', '生活', '0', '2020-01-01', '2020-01-01');
+INSERT INTO `category` VALUES ('5', '经管', '0', '2020-01-01', '2020-01-01');
+INSERT INTO `category` VALUES ('6', '科技', '0', '2020-01-01', '2020-01-01');
 
 
 /*创建图书表（book）*/
@@ -88,9 +90,9 @@ CREATE TABLE `article` (
   `article_cover` varchar(255) DEFAULT NULL,
   `article_date` varchar(50) DEFAULT NULL,
   `cid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_article_category_on_cid` (`cid`),
-  CONSTRAINT `fk_article_category_on_cid` FOREIGN KEY (`cid`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  PRIMARY KEY (`id`)
+--  KEY `fk_article_category_on_cid` (`cid`),
+--  CONSTRAINT `fk_article_category_on_cid` FOREIGN KEY (`cid`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) DEFAULT CHARSET=utf8 ;
 
 

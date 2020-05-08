@@ -12,8 +12,6 @@ import org.springframework.data.domain.Sort;
 import cr.ms.dao.ArticleDao;
 import cr.ms.dao.CategoryDAO;
 import cr.ms.pojo.Article;
-import cr.ms.pojo.Book;
-import cr.ms.pojo.Category;
 import cr.ms.service.ArticleService;
 
 @Service
@@ -56,10 +54,14 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @return
 	 */
 	@Override
-	public List<Article> listByCategory(int page, int size, int cid) {
-		Pageable pageable = PageRequest.of(page, size, new Sort(Sort.Direction.DESC, "articleDate"));
-//		Page<Article> articleLists = articleDao.findAllByCategory(categoryDao.getOne(cid));
-		return articleDao.findAllByCategory(categoryDao.getOne(cid));
+	public Page<Article> listByCategory(int page, int size, int cid) {
+		Pageable pageable = PageRequest.of(page-1, size, new Sort(Sort.Direction.DESC, "id"));
+		Page<Article> articleLists = articleDao.findAllByCategory(categoryDao.getOne(cid),pageable);
+		System.out.println(articleLists);
+		for (Article article : articleLists) {
+			System.out.println(article.toString());
+		}
+		return articleLists;
 	}
 	
 	/**

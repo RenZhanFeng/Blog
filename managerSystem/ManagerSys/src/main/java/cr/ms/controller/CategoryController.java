@@ -1,5 +1,8 @@
 package cr.ms.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cr.ms.enums.ArticleEnum;
+import cr.ms.enums.DateFormatEnum;
 import cr.ms.enums.ResultEnum;
 import cr.ms.pojo.Category;
 import cr.ms.result.Result;
@@ -41,12 +44,20 @@ public class CategoryController {
 	}
 	
 	
-	@PostMapping("/category")
-	public Result saveAndUpdateCategory(Category category){
-		System.out.println(category);
+	@PostMapping("/categories")
+	public Result saveAndUpdateCategory(Category category) throws ParseException{
+		System.out.println("id" + String.valueOf(category.getId()));
+		System.out.println("UpdateTime: " + String.valueOf(category.getUpdateTime()));
+		SimpleDateFormat sdf = new SimpleDateFormat(DateFormatEnum.DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS.getMessage());
+		Date date = new Date();
+		if (!category.getCreateTime().equals(null)) {
+			category.setCreateTime(sdf.format(date));
+		}		
+		category.setUpdateTime(sdf.format(date));
 		categoryService.addAndupdateCategory(category);
 		return ResultUtil.success(category);
 	}
+	
 	
 	@GetMapping("/categories/{id}/delete")
 	public Result deleteCategory(@PathVariable("id") int id){

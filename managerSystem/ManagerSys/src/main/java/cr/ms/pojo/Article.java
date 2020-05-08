@@ -64,7 +64,7 @@ public class Article {
     /**
      * Article release date.
      */
-    private Date articleDate;
+    private String articleDate;
 
 	public int getId() {
 		return id;
@@ -114,19 +114,30 @@ public class Article {
 		this.articleCover = articleCover;
 	}
 
-	public Date getArticleDate() {
+	
+
+	public String getArticleDate() {
 		return articleDate;
 	}
 
-	public void setArticleDate(Date articleDate) {
+	public void setArticleDate(String articleDate) {
 		this.articleDate = articleDate;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", articleTitle=" + articleTitle + ", articleContentHtml=" + articleContentHtml
-				+ ", articleContentMd=" + articleContentMd + ", articleAbstract=" + articleAbstract + ", articleCover="
-				+ articleCover + ", articleDate=" + articleDate + "]";
+		return "Article [id=" + id + ", articleTitle=" + articleTitle + ", category=" + category
+				+ ", articleContentHtml=" + articleContentHtml + ", articleContentMd=" + articleContentMd
+				+ ", articleAbstract=" + articleAbstract + ", articleCover=" + articleCover + ", articleDate="
+				+ articleDate + "]";
 	}
     
 }

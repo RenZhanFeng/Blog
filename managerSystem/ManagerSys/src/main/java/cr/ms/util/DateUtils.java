@@ -69,5 +69,13 @@ public class DateUtils {
 	public static String DateToString(Date date) {
 		return sdf.format(date);
 	}
+	
+	public static String timeFormat(String time) throws ParseException{
+	     String tempTime = time.replace("Z", " UTC");
+	     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
+	     Date d = sdf2.parse(tempTime);
+	     String str= sdf.format(d);
+	     return str;
+	     }
 
 }
