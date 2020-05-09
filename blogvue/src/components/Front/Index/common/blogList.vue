@@ -35,6 +35,7 @@
         </span>
       </div>
     </el-col>
+    <div v-if="!articles.length" v-html="noArticles"></div>
     <el-col>
       <el-pagination
         background
@@ -54,6 +55,7 @@ export default {
   data() {
     return {
       articles: [],
+      noArticles: "很抱歉，暂时无相关文章",
       pageSize: 10,
       total: null,
       layout: ""
