@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     handleSelect(cid) {
-      this.$emit("categoryCid", cid);
+      this.$emit("categoryCid", cid); 
     },
     //获取分类数据
     getCategoryList() {

@@ -6,8 +6,9 @@
           <a href="javascript:" @click="goDetails(item)">{{item.articleTitle}}</a>
         </div>
         <div class="list-meta">
-          <span>
-            <i class="el-icon-folder"></i> 分类名字
+          <span v-if="item.category">
+            <i class="el-icon-folder"></i>
+            {{item.category.name}}
           </span>
           <span>
             <i class="el-icon-date"></i>

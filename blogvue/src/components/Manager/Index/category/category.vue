@@ -64,7 +64,6 @@ export default {
       articles: [],
       categories: [],
       category: {
-        id: "",
         name: "",
         sort: "",
         creat: "",
@@ -111,7 +110,7 @@ export default {
         type: "warning"
       }).then(() => {
         this.$axios
-          .post("/categroy", {
+          .post("/categories", {
             id: this.category.id,
             name: this.category.name,
             sort: this.category.sort,
@@ -120,7 +119,9 @@ export default {
           })
           .then(res => {
             if (res.status === 200) {
-              console.log(res);
+              this.dialogVisible = false;
+              this.$message({ type: "success", message: "添加或修改成功" });
+              this.getCategoryList();
             }
           })
           .catch(reject => {
@@ -146,7 +147,7 @@ export default {
         cancelButtonText: "取消"
       })
         .then(() => {
-          this.$axios.get(`/categories/${id}/delete/`).then(resp => {
+          this.$axios.post(`/categories/delete/`, { id: id }).then(resp => {
             if (resp && resp.status === 200) {
               this.getCategoryList();
               this.$message({ type: "info", message: "删除成功" });
@@ -168,7 +169,7 @@ export default {
       })
         .then(() => {
           this.multipleSelection.forEach(item => {
-            this.$axios.get(`/categories/${item.id}/delete/`).then(resp => {
+            this.$axios.post(`/categories/delete/`, { id: item.id }).then(resp => {
               if (resp && resp.status === 200) {
                 this.getCategoryList();
                 this.$message({ type: "info", message: "删除成功" });

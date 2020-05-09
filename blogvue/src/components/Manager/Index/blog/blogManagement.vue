@@ -115,7 +115,7 @@ export default {
         cancelButtonText: "取消"
       })
         .then(() => {
-          this.$axios.get("/admin/article/" + id).then(resp => {
+          this.$axios.post("/admin/article", { id: id }).then(resp => {
             if (resp && resp.status === 200) {
               this.loadArticles();
               this.$message({ type: "info", message: "删除成功" });
