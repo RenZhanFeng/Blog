@@ -35,6 +35,7 @@
         </span>
       </div>
     </el-col>
+    <div v-if="!articles.length" v-html="noArticles"></div>
     <el-col>
       <el-pagination
         background
@@ -54,6 +55,7 @@ export default {
   data() {
     return {
       articles: [],
+      noArticles: "很抱歉，暂时无相关文章",
       pageSize: 10,
       total: null,
       layout: ""
@@ -111,39 +113,32 @@ export default {
 
 <style scoped lang='stylus'>
 @import '~stylus/mixin';
-
 .item {
   margin-bottom: 20px;
   padding: 20px;
   Shadow();
 }
-
 // 这是el-pagination标签自带的class
 .el-pagination {
   text-align: center;
 }
-
 .list-title a {
   color: #000;
   font-size: 20px;
 }
-
 .list-title a:hover {
   color: #1e90ff;
 }
-
 .list-meta {
   padding-top: 10px;
   padding-bottom: 10px;
   color: #ccc;
   font-size: 13px;
 }
-
 .list-meta span {
   padding-left: 10px;
   padding-right: 10px;
 }
-
 .list-cover img {
   width: 100%;
   display: block;
@@ -151,22 +146,18 @@ export default {
   object-fit: cover;
   Shadow();
 }
-
 .list-abstract {
   font-size: 15px;
   color: #999;
   line-height: 20px;
 }
-
 .list-go {
   text-align: right;
   font-size: 12px;
 }
-
 .list-go a {
   color: #1890ff;
 }
-
 .list-go a:hover {
   color: #40a9ff;
 }

@@ -44,17 +44,14 @@ export default {
 
 <style scoped lang='stylus'>
 @import '~stylus/mixin';
-
 .item {
   margin-bottom: 20px;
   padding: 20px;
   Shadow();
 }
-
 .categories {
   border: 0;
 }
-
 .menuItem {
   text-align: center;
 }

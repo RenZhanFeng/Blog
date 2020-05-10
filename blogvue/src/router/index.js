@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Index from 'Fcomponents/Index/Index'
 import Front from 'Fcomponents/Front'
-import LibraryIndex from 'Fcomponents/Library/LibraryIndex'
 import BlogDetails from 'Fcomponents/Index/common/blogDetails'
 import Login from 'Mcomponents/Login/Login';
 import Manager from 'Mcomponents/Manager'
@@ -40,11 +39,6 @@ const routes = [
             component: BlogDetails
           }
         ]
-      },
-      {
-        path: '/library',
-        name: 'Library',
-        component: LibraryIndex,
       }
     ]
   },

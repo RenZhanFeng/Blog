@@ -25,7 +25,6 @@ export default {
       RoutingPpath: this.$route.path,
       navList: [
         { name: "/index", navItem: "博客首页" },
-        { name: "/library", navItem: "图书馆" }
       ]
     };
   }
@@ -48,7 +47,6 @@ export default {
 .el-menu-demo {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 }
-
 @media screen and (max-width: 768px) {
   .more {
     display: none;

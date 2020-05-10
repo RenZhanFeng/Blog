@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import ImgUpload from "Fcomponents/Library/common/ImgUpload";
+import ImgUpload from "Mcomponents/Index/blog/ImgUpload";
 import { formatDate } from "common/js/util";
 export default {
   name: "blogEditor",
@@ -122,6 +122,7 @@ export default {
     },
     //上传图片成功就修改article的数据
     uploadImg(response) {
+      console.log(response)
       this.article.articleCover = response;
     },
     //获取分类数据
