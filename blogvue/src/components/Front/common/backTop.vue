@@ -1,24 +1,12 @@
 <template>
-  <div class="front">
-    <nav-menu></nav-menu>
-    <router-view />
-    <el-button class="backTop" type="primary" @click="backTop" v-show="btnFlag">
-      <i class="el-icon-arrow-up"></i>
-    </el-button>
-    <back-top></back-top>
-    <el-row class="footer">这里是啥也没有的底部</el-row>
-  </div>
+  <el-button class="backTop" type="primary" @click="backTop" v-show="btnFlag">
+    <i class="el-icon-arrow-up"></i>
+  </el-button>
 </template>
 
 <script>
-import NavMenu from "Fcomponents/NavBar/NavMenu";
-import BackTop from "Fcomponents/common/backTop";
 export default {
-  name: "Front",
-  components: {
-    NavMenu,
-    BackTop
-  },
+  name: "BackTop",
   data() {
     return {
       btnFlag: false,
@@ -55,15 +43,6 @@ export default {
 </script>
 
 <style scoped lang='stylus'>
-.footer {
-  width: 100%;
-  height: 20vh;
-  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.05);
-  border-top: solid 1px #e6e6e6;
-  padding: 20px;
-  text-align: center;
-}
-
 .backTop {
   position: fixed;
   bottom: 22%;
