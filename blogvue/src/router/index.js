@@ -14,6 +14,11 @@ import UserInfo from 'Mcomponents/Index/user/userInfo'
 
 
 Vue.use(VueRouter);
+//在路由跳转的时候同一个路由多次添加是不被允许的,添加一下代码得以解决
+const VueRouterPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+}
 
 const routes = [
   {

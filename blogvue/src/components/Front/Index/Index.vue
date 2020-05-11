@@ -1,14 +1,14 @@
 <template>
   <div class="index">
     <el-row class="indexMain" :gutter="gutter">
-      <el-col class="userInof" :xs="24" :sm="6" :md="6" :lg="{span:4,push:3}">
+      <el-col class="userInof" :xs="24" :sm="6" :md="6" :lg="{span:4,push:2}">
         <user-info></user-info>
       </el-col>
-      <el-col class="blogList" :xs="24" :sm="18" :md="18" :lg="{span:9,push:3}">
+      <el-col class="blogList" :xs="24" :sm="18" :md="18" :lg="{span:12,push:2}">
         <router-view></router-view>
         <blog-list v-show="this.$router.currentRoute.path === '/index'" ref="blogList"></blog-list>
       </el-col>
-      <el-col class="blogCategory hidden-md-and-down" :lg="{span:3,push:3}">
+      <el-col class="blogCategory hidden-md-and-down" :lg="{span:3,push:2}">
         <category @categoryCid="categoryData"></category>
       </el-col>
     </el-row>
@@ -45,11 +45,13 @@ export default {
       let url = `/articles/cid=${cid}`;
       if (cid === 0) {
         this.$refs.blogList.loadArticles();
+        this.$router.push({ path: "/index" });
       } else {
         this.$axios.get(url).then(resolve => {
           if (resolve.data.code === 200) {
             this.$refs.blogList.articles = resolve.data.data.content;
             this.$refs.blogList.total = resolve.data.data.totalElements;
+            this.$router.push({ path: "/index" });
           }
         });
       }
@@ -60,13 +62,16 @@ export default {
 
 <style scoped lang='stylus'>
 @import '~stylus/mixin';
+
 .index {
   background: #f6f6f6;
   padding: 40px 0;
 }
+
 .indexMain {
   margin: 0 10px !important;
 }
+
 .item {
   margin-bottom: 20px;
   padding: 20px;

@@ -45,7 +45,7 @@ export default {
 <style scoped lang='stylus'>
 .backTop {
   position: fixed;
-  bottom: 22%;
+  bottom: 21%;
   right: 25%;
   background: #fff;
   color: #000;
@@ -59,7 +59,7 @@ export default {
 @media screen and (max-width: 1200px) {
   .backTop {
     position: fixed;
-    bottom: 22%;
+    bottom: 21%;
     right: 1%;
   }
 }

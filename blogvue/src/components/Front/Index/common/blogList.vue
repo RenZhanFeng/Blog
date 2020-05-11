@@ -10,6 +10,10 @@
             <i class="el-icon-folder"></i>
             {{item.category.name}}
           </span>
+          <span v-if="!item.category">
+            <i class="el-icon-folder"></i>
+            未分类
+          </span>
           <span>
             <i class="el-icon-date"></i>
             {{item.articleDate}}
