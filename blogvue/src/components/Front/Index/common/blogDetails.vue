@@ -6,7 +6,6 @@
           <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item
             :to="{ path: '/index', query:{ cid:article.category.id } } "
-            @click='handleSelect'
           >{{article.category.name}}</el-breadcrumb-item>
           <el-breadcrumb-item class="breadcrumbArticleTitle">{{article.articleTitle}}</el-breadcrumb-item>
         </el-breadcrumb>
@@ -54,12 +53,8 @@ export default {
       this.$axios.get(`/article/${this.$route.params.id}`).then(resolve => {
         if (resolve.data.code === 200) {
           this.article = resolve.data.data;
-          console.log(this.article);
         }
       });
-    },
-    handleSelect() {
-      console.log(111);
     }
   }
 };
