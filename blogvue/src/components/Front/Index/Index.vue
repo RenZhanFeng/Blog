@@ -1,14 +1,14 @@
 <template>
   <div class="index">
     <el-row class="indexMain" :gutter="gutter">
-      <el-col class="userInof" :xs="24" :sm="6" :md="6" :lg="{span:4,push:2}">
+      <el-col class="userInof" :xs="24" :sm="6" :md="6" :lg="{span:4,push:3}">
         <user-info></user-info>
       </el-col>
-      <el-col class="blogList" :xs="24" :sm="18" :md="18" :lg="{span:12,push:2}">
+      <el-col class="blogList" :xs="24" :sm="18" :md="18" :lg="{span:9,push:3}">
         <router-view></router-view>
         <blog-list v-show="this.$router.currentRoute.path === '/index'" ref="blogList"></blog-list>
       </el-col>
-      <el-col class="blogCategory hidden-md-and-down" :lg="{span:3,push:2}">
+      <el-col class="blogCategory hidden-md-and-down" :lg="{span:3,push:3}">
         <category @categoryCid="categoryData"></category>
       </el-col>
     </el-row>
@@ -35,6 +35,14 @@ export default {
   created() {
     window.addEventListener("resize", this.getGutter);
     this.getGutter();
+  },
+  watch: {
+    $route() {
+      if (this.$route.path === "/index" && this.$route.query.cid) {
+        this.$refs.blogList.articles =''
+        this.categoryData(this.$route.query.cid);
+      }
+    }
   },
   methods: {
     getGutter() {

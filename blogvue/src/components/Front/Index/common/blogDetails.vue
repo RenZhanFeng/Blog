@@ -4,8 +4,10 @@
       <div>
         <el-breadcrumb separator="/" class="breadcrumb" v-if="article.category">
           <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/index' }">{{article.category.name}}</el-breadcrumb-item>
-          <el-breadcrumb-item v-if="!article.category">未分类</el-breadcrumb-item>
+          <el-breadcrumb-item
+            :to="{ path: '/index', query:{ cid:article.category.id } } "
+            @click='handleSelect'
+          >{{article.category.name}}</el-breadcrumb-item>
           <el-breadcrumb-item class="breadcrumbArticleTitle">{{article.articleTitle}}</el-breadcrumb-item>
         </el-breadcrumb>
         <el-breadcrumb separator="/" class="breadcrumb" v-if="!article.category">
@@ -55,6 +57,9 @@ export default {
           console.log(this.article);
         }
       });
+    },
+    handleSelect() {
+      console.log(111);
     }
   }
 };
