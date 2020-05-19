@@ -130,6 +130,7 @@ export default {
 }
 
 .list-title {
+  height: 25px;
   width: 100%;
   no-wrap();
 }

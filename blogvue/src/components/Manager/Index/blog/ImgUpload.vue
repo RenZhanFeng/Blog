@@ -39,8 +39,12 @@ export default {
     },
     //上传成功
     handleSuccess(response) {
-      this.$emit("onUpload", response);
-      this.$message.warning("上传成功");
+      if (response.code === 200) {
+        this.$emit("onUpload", response.data);
+        this.$message.warning("上传成功");
+      }else{
+        this.$message.warning(response.data);
+      }
       this.clear();
     },
     //清除文件

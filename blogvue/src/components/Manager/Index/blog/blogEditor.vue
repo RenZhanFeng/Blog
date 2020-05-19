@@ -122,7 +122,6 @@ export default {
     },
     //上传图片成功就修改article的数据
     uploadImg(response) {
-      console.log(response)
       this.article.articleCover = response;
     },
     //获取分类数据

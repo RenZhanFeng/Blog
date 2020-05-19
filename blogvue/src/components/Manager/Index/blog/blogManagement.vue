@@ -137,7 +137,7 @@ export default {
       })
         .then(() => {
           this.multipleSelection.forEach(item => {
-            this.$axios.get("/admin/article/" + item.id).then(resp => {
+            this.$axios.post("/admin/article/", { id: item.id }).then(resp => {
               if (resp && resp.status === 200) {
                 this.loadArticles();
                 this.$message({ type: "info", message: "删除成功" });

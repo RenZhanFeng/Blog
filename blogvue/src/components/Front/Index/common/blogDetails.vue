@@ -29,7 +29,7 @@
           </span>
         </div>
         <div class="markdown-body">
-          <img :src="article.articleCover" alt="cover" />
+          <img :src="article.articleCover" alt="cover" v-if="article.articleCover"/>
           <div v-html="article.articleContentHtml"></div>
         </div>
       </div>
