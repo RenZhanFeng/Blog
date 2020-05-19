@@ -11,7 +11,9 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileUrlResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,11 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import cr.ms.enums.BookEnum;
+import cr.ms.enums.ResultEnum;
 import cr.ms.pojo.Book;
 import cr.ms.pojo.Category;
+import cr.ms.pojo.User;
 import cr.ms.result.Result;
 import cr.ms.service.BookService;
 import cr.ms.service.CategoryService;
+import cr.ms.util.ProjectPathUtils;
 import cr.ms.util.ResultUtil;
 
 
@@ -121,16 +126,74 @@ public class LibraryController {
 	}
 	
 	/**
+	 * 文件上传
+	 * @Api(description = "图片上传接口"
+	 * @param file
+	 * @return
+	 * @throws Exception
+	 */
+//	@PostMapping("/covers")
+//	public Result coversUpload(@RequestBody MultipartFile file, HttpServletRequest request) throws Exception {
+//		System.out.println("上传文件==="+ file);
+//		String baseURL = "http://www.clownz.xyz:8220/";
+//		String returnURL = "";
+//		//判断文件是否为空
+//	    if (file.isEmpty()) {
+//	        return ResultUtil.fail(ResultEnum.RESULT_UPLOAD_FILE_NOT_NULL.getMessage());
+//	    }
+//	   // 获取原文件名
+//	   String fileName = file.getOriginalFilename();
+//	   //重命名文件，避免重名
+//	   fileName = UUID.randomUUID() + "_" + fileName;
+//	  //文件绝对路径
+//	   String path = baseURL + "cache/" + fileName;
+////	   String path = System.getProperty("user.dir") + "cache/" + fileName;
+//	  
+//	   
+//	   //创建文件路径
+//       File destFile = new File(path);
+//       
+//       //判断文件是否已经存在
+//       if (destFile.exists()) {
+//    	   return ResultUtil.fail(ResultEnum.RESULT_FILE_EXISTS.getMessage());
+//       }
+//    
+//       
+//       //判断文件父目录是否存在
+//       if (!destFile.getParentFile().exists()) {
+//    	   destFile.getParentFile().mkdir();
+//       }
+//       
+//       
+//       try {
+//    	   //保存文件
+//    	   file.transferTo(destFile);
+//    	   System.out.println("目标文件保存路径： " + path);
+//    	   returnURL = baseURL + path;
+//		} catch (Exception e) {
+//			return ResultUtil.fail(ResultEnum.RESULT_UPLOAD_FILE_FAIL.getMessage());
+//		}
+//       return ResultUtil.success(returnURL);
+//	
+//	}
+	
+	/**
 	 * 封面上传
 	 * @param file
 	 * @return
 	 * @throws Exception
 	 */
-	@CrossOrigin //实现跨域
+//	@CrossOrigin //实现跨域
 	@PostMapping("/covers")
-	public String coversUpload(@RequestBody MultipartFile file) throws Exception {
+	public Result coversUpload(@RequestBody MultipartFile file) throws Exception {
+		System.out.println("into covers");
+		String baseUrl = "http://www.clownz.xyz:8220";
 		//获取项目路径
 		String folder = System.getProperty("user.dir").concat("/api/file");
+		if (folder.equals("//api/file")) {
+			folder = "/usr/share/nginx/html/blogServer/api/file";//baseUrl.concat("/api/file");
+		}
+		 System.out.println("folder = " + folder);
 		//创建文件保存文件夹
 		File imgFolder = new File(folder);
 //		String fileName = file.getOriginalFilename();  //获取文件名
@@ -142,14 +205,13 @@ public class LibraryController {
 			imgFolder.getParentFile().mkdirs();
 		}
 		try {
-			System.out.println("目标文件保存于：" + destFile);
+			System.out.println("目标文件保存于：" + folder);
 			file.transferTo(destFile); //保存文件
-			String imgURL = "http://clownz.xyz:8220/api/file/" + destFile.getName();
-			System.out.println();
-			return imgURL;
+			String imgURL = baseUrl.concat("/api/file/").concat(destFile.getName());
+			return ResultUtil.success(imgURL);
 		} catch (IOException e) {
 			e.printStackTrace();
-	        return "";
+	        return ResultUtil.fail(ResultEnum.RESULT_UPLOAD_FILE_FAIL.getMessage());
 		}
 		
 	}

@@ -94,9 +94,10 @@ public class ArticleController {
 	 * 删除文章
 	 * @param id //文章id
 	 */
-	@PostMapping("/admin/article/{id}")
-	public Result delectArticle(@PathVariable("id") int aid) {
-		articleService.deleteArticleById(aid);
+	@PostMapping("/admin/article")
+	public Result delectArticle(@RequestBody Article article) {
+		System.out.println(article);
+		articleService.deleteArticleById(article.getId());
 		return ResultUtil.success(ArticleEnum.ARTICLE_DELETE_SUCCESS.getMessage());
 	}
 	

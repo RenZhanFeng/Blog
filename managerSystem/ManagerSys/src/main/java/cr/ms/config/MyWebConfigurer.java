@@ -1,7 +1,10 @@
 
 package cr.ms.config;
 
+import javax.servlet.MultipartConfigElement;
+
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.DateFormatter;
@@ -47,12 +50,24 @@ public class MyWebConfigurer implements WebMvcConfigurer {
 	}
 	
 	/**
+	 * 文件上传临时路径
+	 */
+	@Bean
+	MultipartConfigElement MultipartConfigElement() {
+		MultipartConfigFactory factory = new MultipartConfigFactory();
+		factory.setLocation("/usr/share/nginx/html/blogServer/cache");
+		return factory.createMultipartConfig();
+	}
+	
+	
+	/**
 	 * 配置图片保存路径
 	 * @param registry
 	 */
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + "/api/file/");
+        registry.addResourceHandler("/cache/**").addResourceLocations("file:/cache");
     }
 	
 	/**

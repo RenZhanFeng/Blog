@@ -1,6 +1,10 @@
 server:
   port: 8443
+  tomcat:
+    #上传临时文件存储路径    basedir: /usr/share/nginx/html/blogServer/cache
   
   
 spring:  servlet:    multipart:      max-file-size: 20MB
       max-request-size: 1000MB
+#配置外部访问文件（把上传的图片视频文件放到服务器下的file文件夹下）
+cbs.imagePath: file/:www.clownz.xyz:8080/api/file/

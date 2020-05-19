@@ -7,9 +7,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cr.ms.enums.DateFormatEnum;
@@ -45,12 +46,12 @@ public class CategoryController {
 	
 	
 	@PostMapping("/categories")
-	public Result saveAndUpdateCategory(Category category) throws ParseException{
+	public Result saveAndUpdateCategory(@RequestBody Category category) throws ParseException{
 		System.out.println("id" + String.valueOf(category.getId()));
 		System.out.println("UpdateTime: " + String.valueOf(category.getUpdateTime()));
 		SimpleDateFormat sdf = new SimpleDateFormat(DateFormatEnum.DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS.getMessage());
 		Date date = new Date();
-		if (!category.getCreateTime().equals(null)) {
+		if (category.getCreateTime().equals(null)) {
 			category.setCreateTime(sdf.format(date));
 		}		
 		category.setUpdateTime(sdf.format(date));
@@ -59,10 +60,10 @@ public class CategoryController {
 	}
 	
 	
-	@GetMapping("/categories/{id}/delete")
-	public Result deleteCategory(@PathVariable("id") int id){
-		System.out.println("由前台获取到的ID= " + id);
-		categoryService.delCategory(id);
+	@PostMapping("/categories/delete")
+	public Result deleteCategory(@RequestBody Category category){
+		System.out.println("由前台获取到的ID= " + category.getId());
+		categoryService.delCategory(category.getId());
 		return ResultUtil.success(ResultEnum.RESULT_DELETE_SUCCESS.getMessage());
 	}
 }

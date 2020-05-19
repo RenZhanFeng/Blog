@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryDAO categoryDAO;
 	
 	public List<Category> list() {
-		Sort sort = new Sort(Sort.Direction.ASC, "id");
+		Sort sort = new Sort(Sort.Direction.ASC, "sort");
 		return categoryDAO.findAll(sort);
 	}
 	
