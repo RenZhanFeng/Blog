@@ -74,7 +74,7 @@ export default {
 }
 
 .breadcrumbArticleTitle {
-  width: 60%;
+  width: 40%;
   no-wrap();
 }
 
