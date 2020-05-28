@@ -50,7 +50,7 @@ export default {
     },
     //点击分类会加载对应的分类数据
     categoryData(cid) {
-      let url = `/articles/cid=${cid}`;
+      let url = cid == 16 ? `/articles`:`/articles/cid=${cid}`
       if (cid === 0) {
         this.$refs.blogList.loadArticles();
         this.$router.push({ path: "/index" });

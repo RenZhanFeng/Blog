@@ -1,14 +1,14 @@
 <template>
   <el-row :span="24" class="item">
     <el-menu class="categories" default-active="0">
-      <el-menu-item class="menuItem" index="0" @click="handleSelect(0)">
+      <!-- <el-menu-item class="menuItem" index="0" @click="handleSelect(0)">
         <template>全部</template>
-      </el-menu-item>
+      </el-menu-item> -->
       <el-menu-item
         class="menuItem"
         v-for="(item, index) in categories"
         :key="index"
-        :index="String(item.id)"
+        :index="String(item.sort)"
         @click="handleSelect(item.id)"
       >
         <template>{{item.name}}</template>
