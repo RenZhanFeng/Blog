@@ -187,7 +187,7 @@ public class LibraryController {
 	@PostMapping("/covers")
 	public Result coversUpload(@RequestBody MultipartFile file) throws Exception {
 		System.out.println("into covers");
-		String baseUrl = "http://www.clownz.xyz:8220";
+		String baseUrl = "https://www.clownz.xyz";
 		//获取项目路径
 		String folder = System.getProperty("user.dir").concat("/api/file");
 		if (folder.equals("//api/file")) {
@@ -207,7 +207,7 @@ public class LibraryController {
 		try {
 			System.out.println("目标文件保存于：" + folder);
 			file.transferTo(destFile); //保存文件
-			String imgURL = baseUrl.concat("/api/file/").concat(destFile.getName());
+			String imgURL = baseUrl.concat("/upload/").concat(destFile.getName());
 			return ResultUtil.success(imgURL);
 		} catch (IOException e) {
 			e.printStackTrace();
