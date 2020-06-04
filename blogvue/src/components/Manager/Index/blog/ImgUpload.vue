@@ -25,7 +25,7 @@ export default {
       fileList: [],
       url: "",
       // action:'http://localhost:8443/api/covers'
-      action: "http://clownz.xyz:8443/api/covers"
+      action: "https://clownz.xyz/api/covers"
     };
   },
   methods: {

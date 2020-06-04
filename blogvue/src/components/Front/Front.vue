@@ -6,7 +6,9 @@
       <i class="el-icon-arrow-up"></i>
     </el-button>
     <back-top></back-top>
-    <el-row class="footer">这里是啥也没有的底部</el-row>
+    <el-row class="footer">
+      <a href="http://www.beian.miit.gov.cn">粤ICP备20046473号</a>
+    </el-row>
   </div>
 </template>
 
